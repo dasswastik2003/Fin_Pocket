@@ -1,0 +1,116 @@
+.cntCard a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px 16px;
+}
+.cntImg {
+  margin-bottom: 21px;
+  pointer-events: none;
+}
+.cntHeading {
+  font-family: var(--ff-stolzl);
+  font-size: var(--fs-350);
+  font-weight: 400;
+  color: var(--clr-primary-100);
+  margin-bottom: 15px;
+}
+.cntAbt {
+  font-family: var(--ff-dm-sans);
+  font-size: var(--fs-250);
+  font-weight: 400;
+  color: var(--clr-primary-100);
+  max-width: 239px;
+  width: 100%;
+  margin: 0 auto;
+}
+.contactLayout {
+  margin-top: 120px;
+}
+.contactMap {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.contactMap iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 496px;
+  border: 0;
+}
+.contactTitle {
+  font-family: var(--ff-stolzl);
+  font-size: var(--fs-500);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-300);
+  margin-bottom: 15px;
+  color: var(--clr-primary-100);
+}
+.contactSubtitle {
+  font-family: var(--ff-dm-sans);
+  font-size: var(--fs-300);
+  color: var(--clr-primary-100);
+}
+.cntFormBody {
+  margin-top: var(--fs-450);
+}
+
+.cntFormGrp {
+  display: flex;
+  flex-direction: column;
+  margin: 32px 0;
+}
+
+.cntFormLabel {
+  font-family: var(--ff-dm-sans);
+  font-weight: 300;
+  font-size: var(--fs-350);
+  color: var(--clr-primary-100);
+  margin-bottom: 16px;
+}
+
+.cntFormInput,
+.cntFormTextarea {
+  width: 100%;
+  height: 56px;
+  padding: 15px;
+  color: var(--clr-primary-100);
+  font-size: var(--fs-300);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0)
+  );
+
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 10px 30px rgba(0, 0, 0, 0.15);
+
+  outline: none;
+}
+.cntFormTextarea{
+    height: 133px;
+}
+.cntFormInput::placeholder,
+.cntFormTextarea::placeholder {
+  color: rgb(159, 154, 154);
+  font-size: var(--fs-300);
+  font-family: var(--ff-dm-sans);
+  font-weight: 400;
+}
+.cntFormInput:focus,
+.cntFormTextarea:focus {
+  border-color: rgba(185, 251, 106, 0.8);
+
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 0 0 1px rgba(185, 251, 106, 0.6), 0 0 30px rgba(185, 251, 106, 0.35);
+}
+.cntFormBody .sectionBtn{
+    justify-content: flex-start;
+}

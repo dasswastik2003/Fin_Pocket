@@ -1,0 +1,59 @@
+.download-sec {
+  overflow: hidden;
+  background: linear-gradient(to bottom, #040502 0%, #6e953f 76%);
+}
+.download-sec .section-badge {
+  margin-left: 0;
+}
+.dowload-cntn {
+  max-width: 679px;
+  margin-top: 50px;
+}
+.dowload-cntn > h4 {
+  font-size: 50px !important;
+  color: var(--clr-primary-100);
+  font-family: var(--ff-stolzl);
+  font-weight: 400;
+}
+.download-para {
+  font-size: 22px;
+  font-weight: 400;
+  font-family: "DM Sans", sans-serif;
+  color: var(--clr-primary-100);
+  margin: 50px 0;
+  max-width: 648px;
+  /* text-align: center; */
+}
+.download-img {
+  max-width: 424px;
+  display: flex;
+  justify-content: space-between;
+}
+.left-download {
+  width: 200px;
+}
+.left-download > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.right-download {
+  width: 200px;
+}
+.right-download > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.mobile-img {
+  width: 227px;
+  perspective: 1000px; /* 3D depth */
+}
+
+.mobile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+  will-change: transform;
+}

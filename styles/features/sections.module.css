@@ -1,0 +1,152 @@
+/* ======= Common Section Styles Start */
+
+.sectionContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.secHeading {
+  font-size: var(--fs-650);
+  font-weight: var(--fw-medium);
+  line-height: 1.3;
+  margin-bottom: 20px;
+}
+
+.secDescription {
+  font-size: var(--fs-350);
+  color: var(--clr-fade-600);
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.sectionBadge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: var(--fs-250);
+  font-weight: var(--fw-medium);
+  margin-bottom: 16px;
+  text-transform: capitalize;
+}
+
+.sectionBtn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  font-size: var(--fs-300);
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 24px;
+}
+
+.sectionBtn.primary {
+  background: var(--clr-primary-400);
+  color: var(--clr-text-000);
+}
+
+.sectionBtn.primary:hover {
+  background: var(--clr-primary-500);
+  transform: translateY(-2px);
+}
+
+.sectionBtn.secondary {
+  background: transparent;
+  color: var(--clr-primary-400);
+  border: 2px solid var(--clr-primary-400);
+}
+
+.sectionBtn.secondary:hover {
+  background: var(--clr-primary-400);
+  color: var(--clr-text-000);
+}
+
+.radialBlur {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.radialBlur.top {
+  top: -200px;
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--clr-primary-400), transparent);
+}
+
+.radialBlur.bottom {
+  bottom: -200px;
+  left: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--clr-primary-300), transparent);
+}
+
+.radialBlur.mid {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--clr-blue-300), transparent);
+  opacity: 0.1;
+}
+
+/* Grid Background */
+.gridBg {
+  position: relative;
+}
+
+.gridBg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.gridBg > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .secHeading {
+    font-size: var(--fs-550);
+  }
+
+  .secDescription {
+    font-size: var(--fs-300);
+  }
+
+  .radialBlur {
+    width: 400px !important;
+    height: 400px !important;
+  }
+
+  .radialBlur.top {
+    top: -150px;
+    right: -150px;
+  }
+
+  .radialBlur.bottom {
+    bottom: -150px;
+    left: -150px;
+  }
+}
+
+/* ====== Common Section Styles End */

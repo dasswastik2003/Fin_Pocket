@@ -1,0 +1,268 @@
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+.navbar {
+  padding: 20px 0;
+  position: relative;
+}
+
+.container {
+  position: relative;
+}
+
+.radialBlur {
+  /* Add any radial blur styling here if needed */
+}
+
+/* .navbar::before,
+.navbar::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  filter: blur(25px);
+}
+.navbar::after {
+  top: -90%;
+  left: 5%;
+  width: 80%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center center,
+    rgba(250, 250, 255, 0.6),
+    transparent 70%
+  );
+}
+.navbar::before {
+  top: 60%;
+  left: 40%;
+  transform: translateX(-40%);
+  width: 55%;
+  height: 90%;
+  background: radial-gradient(
+    circle at center center,
+    rgba(71, 11, 161, 0.6),
+    transparent 75%
+  );
+  opacity: 0.5;
+} */
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.navCollapsed {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.navItems {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding: 15px 20px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 40px rgba(130, 228, 12, 0.25),
+    inset 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+.navActions {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.navLogo {
+  max-width: 70px;
+  width: 100%;
+}
+
+.navList {
+  margin-right: 32px;
+  flex-grow: 1;
+}
+
+.navList:last-child {
+  margin-right: 0;
+}
+
+.navLinks {
+  font-family: var(--ff-stolzl);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-regular);
+  color: var(--clr-primary-100);
+  transition: all 0.3s ease-in-out;
+  padding: 10px 12px;
+  border-radius: 50px;
+  text-decoration: none;
+}
+
+.navLinks:hover {
+  color: var(--clr-primary-200);
+}
+
+.navActions li {
+  margin-right: 20px;
+  list-style: none;
+}
+
+.navActionsSvg {
+  fill: var(--clr-primary-100);
+}
+
+.navActionsSvg path {
+  transition: fill 0.3s ease-in-out;
+}
+
+.navActions button:hover .navActionsSvg path {
+  fill: var(--clr-primary-200);
+}
+
+.navToggle {
+  display: none;
+  cursor: pointer;
+}
+
+.navToggle svg {
+  width: 40px;
+  height: 40px;
+  fill: var(--clr-primary-200);
+}
+
+.navRight {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navRight .btn {
+  margin-right: 8px;
+}
+
+.toggleIcon {
+  width: 100%;
+  height: 40px;
+}
+
+.line {
+  transition: 0.35s ease-in-out;
+  transform-origin: center;
+}
+
+.line1 {
+  transition: 0.35s ease-in-out;
+  transform-origin: center;
+}
+
+.line2 {
+  transition: 0.35s ease-in-out;
+  transform-origin: center;
+}
+
+.line3 {
+  transition: 0.35s ease-in-out;
+  transform-origin: center;
+}
+
+.navToggle.active .line1 {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.navToggle.active .line2 {
+  transform: translateX(-100%);
+}
+
+.navToggle.active .line3 {
+  transform: translateY(-22px) rotate(-45deg);
+}
+
+@media screen and (max-width: 1110px) {
+  .navbar::after {
+    width: 20%;
+    top: 0px;
+    left: 90%;
+  }
+
+  .navbar::before {
+    width: 20%;
+    top: 0;
+    left: 90%;
+  }
+
+  .navToggle {
+    display: block;
+  }
+
+  .navCollapsed {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    flex-direction: column-reverse;
+    z-index: 99;
+    background: var(--clr-primary-200);
+    border-radius: 40vw 0 40vw 20vw;
+    overflow: hidden;
+  }
+
+  .navList {
+    margin-right: 0;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--clr-primary-900);
+    width: 100%;
+  }
+
+  .navList a {
+    color: var(--clr-primary-900);
+  }
+
+  .navLinks:hover {
+    color: var(--clr-primary-700);
+  }
+
+  .navActions {
+    margin-left: auto;
+    padding: 8px;
+  }
+
+  .navActions li:last-child {
+    margin-right: 0;
+  }
+
+  .navActionsSvg {
+    width: 24px;
+    fill: black !important;
+  }
+
+  .navCollapsed.show {
+    display: flex;
+  }
+
+  .navItems {
+    width: 50%;
+    flex-direction: column;
+    border-radius: 0;
+    border: none;
+    background: rgba(255, 255, 255, 0);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+  }
+}

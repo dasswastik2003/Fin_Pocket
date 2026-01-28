@@ -1,5 +1,5 @@
-import Navbar from '@/components/layout/navbar'
-import Footer from '@/components/layout/footer'
+import Navbar from '@/components/layout/navbar/navbar'
+import Footer from '@/components/layout/footer/footer'
 import FeaturesBanner from '@/components/featureSections/FeaturesBanner'
 import FeaturesGrid from '@/components/featureSections/FeaturesGrid'
 import HowItWorks from '@/components/featureSections/HowItWorks'
@@ -10,8 +10,6 @@ export default function Features() {
   return (
     <main style={{ position: 'relative', minHeight: '100vh' }}>
         <div className="grid"></div>
-        {/* Navbar */}
-        <Navbar/>
         
         {/* Features Banner */}
         <FeaturesBanner/>
@@ -25,8 +23,6 @@ export default function Features() {
         {/* Services Section */}
         <Services/>
 
-        {/* Footer */}
-        <Footer/>
     </main>
   )
 }

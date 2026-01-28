@@ -1,17 +1,14 @@
 import ContactBanner from '@/components/contactSections/contactBanner'
-import Navbar from '@/components/layout/navbar'
 import React from 'react'
 import styles from "../../styles/contact/contacts.module.css";
-import Footer from '@/components/layout/footer';
+import Footer from '@/components/layout/footer/footer';
 import ContactDownload from '@/components/contactSections/contactDownload';
 
 export default function Contact() {
     return (
         <main style={{ position: 'relative', minHeight: '100vh' }}>
             <div className="grid"></div>
-            {/* Navbar */}
-            <Navbar />
-
+           
             {/* Contact Banner */}
             <ContactBanner />
 
@@ -148,8 +145,8 @@ export default function Contact() {
 
 
             <ContactDownload/>
-            {/* Footer */}
-            <Footer />
+            
+            
         </main>
     )
 }

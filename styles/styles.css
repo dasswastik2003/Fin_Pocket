@@ -1,6 +1,35 @@
 body {
   font-family: var(--ff-dm-sans);
 }
+/* =====Login Section*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}
+label{
+  user-select: none;
+  -webkit-user-select: none; 
+  -ms-user-select: none;
+  cursor: pointer;
+}
+ul {
+  list-style-type: none;
+}
+p {
+  font-family: var(--font-dm);
+  font-size: 16px;
+  color: var(--text-color);
+  text-transform: capitalize;
+  margin-bottom: 32px;
+  text-align: center;
+} 
+
 /* ===== BANNER SECTION ===== */
 .bannerSec {
   min-height: 700px !important;

@@ -1,7 +1,6 @@
 import ContactBanner from '@/components/contactSections/contactBanner'
 import React from 'react'
 import styles from "../../styles/contact/contacts.module.css";
-import Footer from '@/components/layout/footer/footer';
 import ContactDownload from '@/components/contactSections/contactDownload';
 
 export default function Contact() {

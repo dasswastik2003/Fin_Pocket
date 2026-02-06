@@ -1,0 +1,68 @@
+/* ==== Section Benefits Start ====== */
+
+.benefits .col {
+  display: flex;
+}
+.benefits-card {
+  padding: 64px 32px;
+  font-size: var(--fs-350);
+  font-weight: var(--fw-regular);
+  text-align: center;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+  height: 100%;
+}
+.benefits-card-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--ff-stolzl);
+  margin-bottom: 30px;
+}
+.benefits-card-heading figure {
+  width: 35px;
+  padding: 3px;
+  margin-right: 16px;
+}
+.benefits-card-des {
+  max-width: 300px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--clr-fade-600);
+}
+.benefits-cards {
+  display: flex;
+  gap: 24px;
+}
+
+/* ==== Section Benefits End ====== */
+
+@media (max-width: 1024px) {
+  .benefits-card {
+    padding: 48px 24px;
+    min-height: unset;
+    height: auto;
+  }
+  .benefits-card-heading {
+    flex-direction: column;
+  }
+  .benefits-card-heading figure {
+    margin-right: 0;
+    margin-bottom: 16px;
+  }
+  .benefits-card-des {
+    max-width: 100%;
+  }
+  .benefits-cards {
+    flex-direction: column;
+    gap: 0;
+  }
+  .benefits-cards .col:nth-child(1) .benefits-card,
+  .benefits-cards .col:nth-child(2) .benefits-card {
+    margin-bottom: 24px;
+  }
+}

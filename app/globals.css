@@ -391,7 +391,7 @@ h3 {
 .col-5 {
   width: calc(var(--one-col) * 5);
 }
-.col-6 {
+.col6 {
   width: calc(var(--one-col) * 6);
 }
 .col-7 {

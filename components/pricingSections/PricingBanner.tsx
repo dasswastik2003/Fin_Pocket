@@ -1,14 +1,9 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-<<<<<<< HEAD
-import '@/styles/banner.css';
-import styles from '../../styles/banner/banner.module.css';
-=======
+import Link from "next/link";
 import '@/styles/styles.css';
->>>>>>> origin/main
 
-export default function FeaturesBanner() {
+export default function PricingBanner() {
   return (
     <>
       <div className="grid" />
@@ -16,25 +11,25 @@ export default function FeaturesBanner() {
         <div className="container">
           <div className="bannerCntn">
             <h1 className="bannerHeading">
-              Smart Features for Better <span className="subBanner">Financial Control</span>
+              Affordable Plans for Smarter <span className="subBanner">Money Management</span>
             </h1>
             <ul className="switchLink">
               <li>
                 <Link href="/">Home</Link>
               </li>
               <li>
-                <Link href="/features">Features</Link>
+                <Link href="/pricing">Pricing</Link>
               </li>
             </ul>
           </div>
           <div className="bannerImg">
             <figure>
-              <img src="/images/banner/features-banner.svg" alt="Features Banner" />
+              <img src="/images/banner/pricing-banner.svg" alt="Pricing Banner" />
             </figure>
           </div>
         </div>
       </section>
-      <div className="radialBlur" />
+      <div className="radial-blur" />
     </>
   );
 }

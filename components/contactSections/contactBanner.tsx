@@ -1,12 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-<<<<<<< HEAD
-import '@/styles/banner.css';
-// import styles from '../../styles/banner/banner.module.css';
-=======
+
 import '@/styles/styles.css';
->>>>>>> origin/main
+
 
 export default function ContactBanner() {
   return (

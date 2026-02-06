@@ -1,5 +1,5 @@
 import React from 'react'
-import '@/styles/banner.css'
+import '@/styles/styles.css'
 import "@/styles/faq/faqSections.module.css"
 
 export default function FaqBannerSections() {

@@ -1,97 +1,61 @@
-"use client"
+"use client";
 
-import React, { useState } from 'react'
-import styles from "@/styles/login/login.module.css";
-import "@/styles/styles.css";
-import * as yup from "yup";
-import { useRouter } from 'next/navigation';
-import { useDispatch, useSelector } from "react-redux";
-import { Cookies } from "react-cookie";
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { toast } from 'sonner';
-import { authLogin } from '@/redux/slice/authSlice';
-
-
-const schema = yup.object({
-    email: yup.string().email("Invalid email").required("Email is required"),
-    password: yup
-        .string()
-        .min(6, "Minimum 6 characters")
-        .max(20, "Maximum 20 characters")
-        .required("Password is required"),
-});
-
-export default function Login() {
-    const router = useRouter();
-    const dispatch = useDispatch()
-    const cookies = new Cookies()
-    const [message, setMessage] = useState("");
-    const [success, setSuccess] = useState(false);
-
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm({
-        resolver: yupResolver(schema),
-    });
-    const onSubmit = async (data) => {
-        try {
-            const result = dispatch(authLogin(data));
-            let res = await result.unwrap();
-            if (res.status === true) {
-                cookies.set("token", res.token, { path: "/" })
-                toast.success("Login successful");
-                router.push("/");
-            }
-
-        } catch (err: any) {
-            setSuccess(false);
-            setMessage(err);
-        }
-
-    }
+import React from 'react'
+import styles from "@/styles/register/register.module.css"
+import "@/styles/styles.css"
+export default function Register() {
     return (
         <>
-            <div className='radialBlur'></div>
+        <div className="radialBlur"></div>
             <section className={styles.loginSec}>
-                <div className={styles.container}>
-                    <div className={styles.row + " login-row"}>
+                <div className="container">
+                    <div className="row login-row">
                         <div className={styles.col5}>
                             <div className={styles.welcomeSec}>
-                                <div className={styles.title}>Welcome!</div>
-                                <p className="subtitle">Please enter your details to login</p>
-                                <form action="" onSubmit={handleSubmit(onSubmit)}>
+                                <div className={styles.title}>Create an account</div>
+                                <p className="subtitle">
+                                    Please enter your details to create an account
+                                </p>
+                                <form action="">
                                     <div className={styles.loginForm}>
+                                        <label htmlFor="full-name">Full Name</label>
+                                        <input
+                                            type="text"
+                                            id="full-name"
+                                            name="full-name"
+                                            placeholder="Enter your name"
+                                        />
                                         <label htmlFor="email">Email address</label>
                                         <input
                                             id="email"
                                             type="email"
                                             placeholder="Enter your email address"
                                         />
-                                        {errors.email && (
-                                            <p className="text-red-500 text-sm" style={{ color: "red" }}>{errors.email.message}</p>
-                                        )}
                                         <div className={styles.rowBetween}>
                                             <label htmlFor="password">Password</label>
-                                            <a href="/auth/forgot-password" className={styles.passLink}>
-                                                Forgot Password?
-                                            </a>
                                         </div>
                                         <input
-                                            id="password"
                                             type="password"
-                                            placeholder="Enter your password" />
-                                        {errors.password && (
-                                            <p className="text-red-500 text-sm" style={{ color: "red" }}>{errors.password.message}</p>
-                                        )}
+                                            id="password"
+                                            name="password"
+                                            placeholder="Enter your password"
+                                        />
+                                        <label htmlFor="confirm-password">Confirm Password</label>
+                                        <input
+                                            type="password"
+                                            id="confirm-password"
+                                            name="confirm-password"
+                                            placeholder="Re-enter your password"
+                                        />
                                     </div>
                                     <div className={styles.terms}>
                                         <input type="checkbox" id="terms" />
-                                        <label htmlFor="terms"> Remember me</label>
+                                        <label htmlFor="terms">
+                                            <span>I agree to the</span>
+                                        </label>
+                                        <a href="#">Privacy Policy</a>
                                     </div>
-                                    <input type="submit" defaultValue="Login" className={styles.loginBtn} />
+                                    <input type="submit" defaultValue="Sign Up" className={styles.loginBtn} />
                                     <p className={styles.orText}>or log in with</p>
                                     <ul className={styles.socialLinks}>
                                         <li>
@@ -174,17 +138,17 @@ export default function Login() {
                                         </li>
                                     </ul>
                                     <p className={styles.signupText}>
-                                        Don't have an account?
-                                        <a href="/auth/register" className={styles.signupLink}>
-                                            Sign up
+                                        Already have an account
+                                        <a href="/auth/login" className={styles.signupLink}>
+                                            Sign In
                                         </a>
                                     </p>
                                 </form>
                             </div>
                         </div>
-                        <div className={styles.col7 + " col-right"}>
+                        <div className={styles.col7 + " " + styles.colRight}>
                             <div className={styles.imageCard}>
-                                <img src="/images/modals/login-img.png" alt="Login-side-image" />
+                                <img src="/images/modals/createac-img.png" alt="Login-side-image" />
                             </div>
                         </div>
                     </div>

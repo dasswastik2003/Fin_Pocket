@@ -9,9 +9,21 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "next": "16.1.4",
+    "@hookform/resolvers": "^5.2.2",
+    "@reduxjs/toolkit": "^2.11.2",
+    "axios": "^1.13.4",
+    "debounce": "^3.0.0",
+    "next": "^16.1.6",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-cookie": "^8.0.1",
+    "react-dom": "19.2.3",
+    "react-hook-form": "^7.71.1",
+    "react-redux": "^9.2.0",
+    "sonner": "^2.0.7",
+    "sweetalert2": "^11.26.18",
+    "swiper": "^12.1.0",
+    "use-debounce": "^10.1.0",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

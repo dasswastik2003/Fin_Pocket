@@ -1,5 +1,4 @@
-import Navbar from '@/components/layout/navbar/navbar'
-import Footer from '@/components/layout/footer/footer'
+
 import FeaturesBanner from '@/components/featureSections/FeaturesBanner'
 import FeaturesGrid from '@/components/featureSections/FeaturesGrid'
 import HowItWorks from '@/components/featureSections/HowItWorks'

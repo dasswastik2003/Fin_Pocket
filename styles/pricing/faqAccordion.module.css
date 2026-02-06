@@ -1,0 +1,218 @@
+/* FAQ Accordion Section Styles - Scoped for CSS Module */
+
+.accordianSec {
+  position: relative;
+  padding: 60px 0;
+}
+.radialBlur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  /* .container { */
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+}
+.sectionContent {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 80px;
+}
+.accordianContent {
+  max-width: 657px;
+  width: 100%;
+}
+.sectionBadge {
+  margin: auto 0 auto 0;
+}
+.sectionBadge {
+  font-family: var(--ff-stolzl) !important;
+  font-size: var(--fs-300) !important;
+  font-weight: var(--fw-regular) !important;
+  color: var(--clr-primary-100);
+
+  width: max-content;
+  margin: 0 auto;
+  padding: 15px 20px;
+  border-radius: 50px;
+
+  /* Glass Base */
+  background: rgba(0, 0, 0, 0.2);
+
+  backdrop-filter: blur(14px) saturate(130%) contrast(95%);
+  /* -webkit-backdrop-filter: blur(14px) saturate(130%) contrast(95%); */
+
+  /* Border */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  /* Soft Glow + Depth */
+  box-shadow:
+    0 1px 0px rgba(255, 255, 255, 0.25),
+    0 6px 18px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+.sectionBadge::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.35),
+    rgba(255, 255, 255, 0.06) 10%,
+    transparent 10%
+  );
+  pointer-events: none;
+}
+.secHeading {
+  font-family: var(--ff-stolzl);
+  font-size: var(--fs-500);
+  color: var(--clr-primary-100);
+  letter-spacing: var(--letter-spacing-300);
+  text-align: center;
+  margin: 48px 0;
+}
+.secHeading span {
+  color: var(--clr-primary-200);
+}
+.secHeading {
+  text-align: left;
+  margin-left: 0;
+}
+.secDescription {
+  font-family: var(--ff-dm-sans);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-regular);
+  text-align: center;
+  max-width: 90%;
+  margin: 0 auto;
+  color: var(--clr-fade-600);
+}
+.secDescription {
+  text-align: left;
+  margin-left: 0;
+}
+.sectionBtn {
+  max-width: fit-content;
+}
+.btn {
+  white-space: nowrap;
+}
+.accordianRow {
+  align-items: stretch;
+  display: flex;
+  gap: 32px;
+}
+.accordianImg {
+  width: 648px;
+  border-radius: 30px;
+  overflow: hidden;
+}
+.accordianImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.accordionWrapper {
+  min-height: 100%;
+  min-width: 540px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.accordionItem {
+  background: linear-gradient(
+    to right,
+    rgba(60, 197, 215, 0.3) 0%,
+    rgba(71, 215, 148, 0.5) 100%
+  );
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.accordionHeader {
+  padding: 16.5px;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.accordionBody {
+  font-family: "DM Sans", sans-serif;
+  max-height: 0;
+  overflow: hidden;
+  background: #fff;
+  color: #222;
+  font-size: 1rem;
+  line-height: 1.6;
+  padding: 0 20px;
+  transition: all 0.4s ease;
+}
+.accordionItemActive .accordionBody {
+  max-height: 140px;
+  padding: 14px 20px;
+}
+.icon {
+  font-size: 30px;
+  color: #9cffc2;
+}
+@media (max-width: 991px) {
+  .accordianImg {
+    width: 487px;
+    margin: 0px auto 31px;
+  }
+  .accordianRow {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+@media (max-width: 768px) {
+  .sectionContent {
+    flex-direction: column !important;
+    margin: 0 auto;
+  }
+  .accordianContent {
+    margin: 0 auto;
+    max-width: 500px;
+  }
+  .sectionBadge {
+    margin: 0 auto;
+  }
+  .secHeading {
+    text-align: center !important;
+  }
+  .secDescription {
+    text-align: center !important;
+    margin: 0 auto;
+  }
+  .sectionBtn {
+    max-width: fit-content;
+    margin: 32px auto;
+  }
+}
+@media (max-width: 420px) {
+  .accordianImg {
+    width: 289px;
+    margin: 0px auto 31px;
+  }
+  .accordionHeader {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+  .accordionBody {
+    font-size: 8px;
+    padding: 0 20px;
+  }
+}

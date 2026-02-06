@@ -1,9 +1,19 @@
 @font-face {
-  font-family: "stolzl-medium";
-    src: url("/fonts/stolzl/stolzl_regular.otf");
+  font-family: "stolzl-medium" !important;
+    src: url("/fonts/stolzl/stolzl_regular.otf") !important;
 }
 
-
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+/* label{
+   user-select: none;
+  -webkit-user-select: none; /* Safari / Chrome */
+  /* -ms-user-select: none;     old Edge */
+  /* cursor: pointer; */
+/* } */ 
 html,
 body {
   overflow-x: hidden;
@@ -13,7 +23,6 @@ body {
   background: black;
   position: relative;
 }
-
 body::before {
   content: "";
   position: absolute;
@@ -28,8 +37,7 @@ body::before {
     rgba(185, 251, 106, 0.25) 30%,
     rgba(185, 251, 106, 0.12) 50%,
     rgba(185, 251, 106, 0.05) 65%,
-    transparent 75%
-  );
+    transparent 75%) ;
   filter: blur(120px);
   z-index: -1;
 }
@@ -49,13 +57,15 @@ body::after {
   z-index: -1;
 }
 
-/*  */
 :root {
   --text-color: rgba(255, 255, 255, 0.6);
   --login-btn: #b9fb6a;
-  --font-dm: "DM Sans", sans-serif;
-}
+  --font-dm: "DM Sans", sans-serif; /* ei ta hobe */
 
+}
+/* ul {
+  list-style-type: none;
+} */
 .loginSec {
   min-height: 100vh;
   display: flex;
@@ -88,14 +98,16 @@ body::after {
   margin: 0 auto;
 }
 
-
+/* .login-sec .col-5,
+.login-sec .col-7 {
+  padding: 0 calc(71px / 2);
+} */
 .welcomeSec {
-  max-width: 434px;
+  max-width: 454px;
   margin: 0 auto;
   font-family: var(--font-dm);
   background: transparent;
 }
-
 .title {
   font-family: "stolzl-medium";
   font-size: 45px;
@@ -104,7 +116,14 @@ body::after {
   margin-bottom: 25px;
   text-align: center;
 }
-
+/* p {
+  font-family: var(--font-dm);
+  font-size: 16px;
+  color: var(--text-color);
+  text-transform: capitalize;
+  margin-bottom: 32px;
+  text-align: center;
+} */
 .loginBtn {
   width: 100%;
   display: flex;
@@ -125,17 +144,16 @@ body::after {
   font-family: var(--font-dm);
   color: var(--text-color);
 }
-
 .loginForm label {
-  /* display: block; */
   font-size: 14px;
   margin-bottom: 16px;
   display: inline-block;
+  
 }
-
 .loginForm input[type="email"],
-.loginForm input[type="password"] {
-  width: 100%;
+.loginForm input[type="password"], 
+.loginForm input[type="text"] {
+ width: 100%;
   padding: 18px 16px;
   color: white;
 
@@ -152,7 +170,6 @@ body::after {
   outline: none;
   margin-bottom: 20px;
 }
-
 .loginForm input::placeholder {
   color: rgba(255, 255, 255, 0.55);
 }
@@ -161,15 +178,14 @@ body::after {
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3),
     0 0 0 1px rgba(185, 251, 106, 0.6), 0 0 24px rgba(185, 251, 106, 0.35);
 }
-
 .rowBetween {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+   align-items: center;
 }
-.rowBetween .passLink {
+.rowBetween .passLink{
   margin-bottom: 16px;
-  color: var(--login-btn);
+   color: var(--login-btn);
 }
 .rowBetween .passLink:hover {
   color: var(--text-color);
@@ -181,7 +197,6 @@ body::after {
   margin-bottom: 25px;
   color: var(--text-color);
 }
-
 .terms input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
@@ -190,9 +205,10 @@ body::after {
   border-radius: 1px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   background: transparent;
-  position: relative;
   cursor: pointer;
+  position: relative;
 }
+
 .terms input[type="checkbox"]:checked {
   background: var(--login-btn);
   border-color: var(--login-btn);
@@ -204,16 +220,19 @@ body::after {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 10px;
+  font-size: 11px;
   color: black;
   font-weight: bold;
+}
+.terms label {
+  cursor: pointer;
 }
 
 .terms:hover {
   color: var(--login-btn);
 }
 .terms span {
-  color: rgb(120, 119, 119);
+  color: rgb(32, 32, 32);
 }
 .orText {
   display: flex;
@@ -307,6 +326,7 @@ body::after {
 }
 .signupLink{
   text-decoration: underline;
+   margin-left: 5px !important;
 }
 .signupLink:hover{
   color: white;

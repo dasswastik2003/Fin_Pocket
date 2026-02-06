@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import '@/styles/banner.css';
+import styles from '../../styles/banner/banner.module.css';
 
 export default function FeaturesBanner() {
   return (

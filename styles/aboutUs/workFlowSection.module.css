@@ -1,0 +1,118 @@
+
+.workflow {
+  background: var(--clr-primary-fade-900) !important;
+}
+
+.workflow-content {
+  max-width: 827px;
+  margin: 0 auto;
+}
+
+.workflow-content .section-content {
+  width: 100%;
+}
+
+.workflow-content .section-badge {
+  border-color: var(--clr-primary-900);
+  color: var(--clr-primary-900);
+  box-shadow: none;
+  border-width: 1px;
+  backdrop-filter: none;
+  background: rgba(0, 0, 0, 0);
+}
+
+.workflow-content h2 {
+  text-align: left;
+  margin-top: 30px;
+  color: var(--clr-primary-900);
+  font-weight: var(--fw-regular);
+}
+
+.workflow-content h3 {
+  color: var(--clr-primary-900);
+  font-weight: var(--fw-semibold);
+}
+
+.workflow-content p {
+  max-width: 100%;
+  margin-left: 0;
+  font-size: var(--fs-300);
+  font-family: var(--ff-dm-sans);
+  line-height: var(--lh-base);
+  margin-top: 30px;
+}
+
+.workflow-content div:nth-child(n + 2) {
+  margin-top: 32px;
+}
+
+
+.workflow-steps {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.steps-cards {
+  background: var(--clr-primary-100);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  box-shadow: 0 4px 42px var(--clr-fade-250),
+    inset 0 0 0.8px rgba(255, 255, 255, 0.5),
+    inset 0 0 20px rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 650px;
+  width: 100%;
+  min-height: 650px;
+  padding: 30px;
+}
+
+.steps-cards > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.steps-cards h3 {
+  font-family: var(--ff-stolzl);
+  color: var(--clr-neutral-100);
+  font-weight: var(--fw-regular);
+}
+
+.steps-cards p {
+  font-family: var(--ff-dm-sans);
+  font-weight: var(--fw-regular);
+  color: var(--clr-neutral-100);
+  font-size: var(--fs-300);
+  margin-top: 14px;
+}
+
+.steps-cards figure {
+  padding: 25px;
+  background: var(--clr-primary-900);
+  border-radius: 50%;
+  margin-right: 24px;
+}
+
+.steps-cards figure img {
+  width: 30px;
+}
+
+
+@media (max-width: 767px) {
+  .steps-cards {
+    padding: 20px;
+    min-height: auto;
+  }
+}
+@media (max-width: 575px) {
+  .steps-cards {
+    padding: 16px;
+  }
+}

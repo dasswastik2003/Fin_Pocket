@@ -38,7 +38,7 @@ export default function Navbar() {
                   </Link>
                 </li>
                 <li className="navList">
-                  <Link className="navLinks" href="/about-us">
+                  <Link className="navLinks" href="/aboutUs">
                     About Us
                   </Link>
                 </li>

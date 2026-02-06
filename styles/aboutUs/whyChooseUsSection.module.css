@@ -1,0 +1,114 @@
+
+/* ===== Grid System ===== */
+.container {
+  max-width: 1320px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -24px;
+}
+
+.why-choose-us h3 {
+  font-family: var(--ff-stolzl);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--letter-spacing-300);
+  margin-bottom: 16px;
+}
+
+.why-choose-us p {
+  font-family: var(--ff-dm-sans);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-regular);
+  color: var(--clr-fade-600);
+}
+
+.why-choose-us .btn {
+  pointer-events: none;
+}
+
+.buddget-planner-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  min-height: 500px;
+  margin: 60px 0;
+}
+
+.buddget-planner-wrapper > div {
+  padding: 24px;
+}
+
+.buddget-planner-left figure {
+  margin: 0 auto;
+  width: fit-content;
+  height: 100%;
+}
+
+.buddget-planner-right {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  justify-content: space-between;
+  position: relative;
+}
+
+.feature-step {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.feature-step figure {
+  width: 120px;
+  height: 120px;
+  padding: 35px;
+  background: var(--clr-primary-200);
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 24px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.buddget-planner-right figure img {
+  width: 48px;
+  height: 48px;
+}
+
+.feature-step::before {
+  content: "";
+  position: absolute;
+  left: 55px;
+  top: 120px;
+  height: calc(100% + 80px);
+  width: 10px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--clr-primary-200) 0 6px,
+    transparent 6px 12px
+  );
+}
+
+.feature-step::after {
+  content: "";
+  position: absolute;
+  left: 50px;
+  top: -15px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 14px solid var(--clr-primary-200);
+}
+
+.feature-step:last-child::before,
+.feature-step:first-child::after {
+  display: none;
+}

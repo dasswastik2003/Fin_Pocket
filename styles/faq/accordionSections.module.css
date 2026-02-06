@@ -1,0 +1,107 @@
+/* accordion-section */
+.accordion-sec .section-content {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 80px;
+  align-items: center;
+}
+/* ================================== Rsponsiv checking */
+.accordion-sec .section-content .accordion-content {
+  max-width: 657px;
+  width: 100%;
+  text-align: start;
+}
+.accordion-sec .section-content .section-badge {
+  margin: auto 0 auto 0;
+  text-align: start;
+}
+.accordion-content h2{
+  text-align: start;
+}
+.accordion-content p{
+  text-align: start;
+}
+.accordion-content #accordionbadge{
+   text-align: start;
+}
+.accordion-sec .section-content .accordion-content .sec-heading {
+  text-align: left;
+  margin-left: 0;
+}
+.accordion-sec .section-content .accordion-content .sec-description {
+  text-align: left;
+  margin-left: 0;
+}
+
+.accordion-sec .section-content h2 {
+  margin-left: 0;
+}
+.accordion-sec .section-content .section-btn {
+  max-width: fit-content;
+}
+.accordion-sec .section-content .section-btn .btn {
+  white-space: nowrap;
+}
+.accordion-row {
+  align-items: stretch;
+}
+.accordion-img {
+  width: 648px;
+  border-radius: 30px;
+  overflow: hidden;
+}
+.accordion-img > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.accordion-wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.accordion-item {
+  background: linear-gradient(
+    to right,
+    rgba(60, 197, 215, 0.3) 0%,
+    rgba(71, 215, 148, 0.5) 100%
+  );
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.accordion-header {
+  padding: 16.5px;
+  color: var(--clr-primary-100);
+  font-size: var(--fs-350);
+  cursor: pointer;
+  font-family: var(--ff-dm-sans);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordion-body {
+  font-family: var(--ff-dm-sans);
+  max-height: 0;
+  overflow: hidden;
+  background: var(--clr-primary-100);
+  color: var(--clr-primary-900);
+  font-size: var(--fs-300);
+  line-height: var(--lh-base);
+  padding: 0 20px;
+  transition: all 0.4s ease;
+}
+
+.accordion-item.active .accordion-body {
+  max-height: 140px;
+  padding: 14px 20px;
+}
+
+.icon {
+  font-size: 30px;
+  color: #9cffc2;
+}

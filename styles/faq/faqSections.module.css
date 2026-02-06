@@ -1,0 +1,320 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+
+@font-face {
+  font-family: "stolzl";
+  src: url("/fonts/stolzl/stolzl_regular.otf");
+}
+:root {
+  --primary-color: #000000;
+}
+.download-sec {
+  overflow: hidden;
+  background: linear-gradient(to bottom, #040502 0%, #6e953f 76%);
+}
+.download-sec .section-badge {
+  margin-left: 0;
+}
+.dowload-cntn {
+  max-width: 679px;
+  margin-top: 50px;
+}
+.dowload-cntn > h4 {
+  font-size: 50px !important;
+  color: var(--clr-primary-100);
+  font-family: var(--ff-stolzl);
+  font-weight: 400;
+}
+.download-para {
+  font-size: 22px;
+  font-weight: 400;
+  font-family: "DM Sans", sans-serif;
+  color: var(--clr-primary-100);
+  margin: 50px 0;
+  max-width: 648px;
+  /* text-align: center; */
+}
+.download-img {
+  max-width: 424px;
+  display: flex;
+  justify-content: space-between;
+}
+.left-download {
+  width: 200px;
+}
+.left-download > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.right-download {
+  width: 200px;
+}
+.right-download > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.mobile-img {
+  width: 227px;
+  perspective: 1000px; /* 3D depth */
+}
+
+.mobile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+  will-change: transform;
+}
+/* FAQ Section */
+.btn-faq {
+  margin-bottom: 60px;
+}
+.faq-cntn {
+  margin-bottom: 50px;
+  max-width: 657px;
+}
+.faq-cntn > h4 {
+  font-size: 45px;
+  font-weight: 400;
+  font-family: var(--ff-stolzl);
+  color: var(--clr-primary-100);
+}
+.faq-para {
+  max-width: 536px;
+}
+.faq-para > p {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: "DM Sans", sans-serif;
+  color: var(--clr-primary-100);
+}
+
+/* Media QUERY */
+@media (max-width: 1200px) {
+  /* Download-sec */
+  .dowload-cntn h4 {
+    font-size: 42px;
+  }
+
+  .download-para {
+    font-size: 20px;
+  }
+
+  .mobile-img {
+    width: 200px;
+  }
+}
+
+@media (max-width: 991px) {
+  /* Download-sec */
+  .download-sec {
+    padding: 40px 0;
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .download-sec .col-9,
+  .download-sec .col-3 {
+    width: 100%;
+  }
+
+  .mobile-img {
+    margin: 50px auto 0;
+  }
+  .download-btn{
+    width: fit-content;
+    margin: 0 auto;
+  }
+  .dowload-cntn {
+    margin: 50px auto 0;
+    text-align: center;
+  }
+  .download-para {
+    text-align: center;
+    margin: 50px auto 50px;
+  }
+  .download-img {
+    margin: 0 auto;
+  }
+  /* FAQ-Section */
+  .faq-cntn {
+    margin: 0 auto 50px;
+    max-width: 657px;
+    text-align: center;
+  }
+  .faq-para {
+    max-width: 536px;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .download-sec .section-badge {
+   margin: 0 auto;
+}
+  /* Download-sec */
+  .dowload-cntn > h4 {
+    font-size: 37px !important;
+    color: var(--clr-primary-100);
+    font-family: var(--ff-stolzl);
+    font-weight: 400;
+  }
+  .download-para {
+    text-align: center;
+    margin: 30px auto 30px;
+  }
+  .download-para {
+    font-size: 18px;
+  }
+  .dowload-cntn {
+    margin: 24px auto 0;
+    text-align: center;
+  }
+  /* FAQ-Section */
+  
+  .faq-cntn > h4 {
+    font-size: 28px;
+    font-weight: 400;
+    font-family: var(--ff-stolzl);
+    color: var(--clr-primary-100);
+  }
+  .faq-cntn {
+    margin: 0px auto 31px;
+    max-width: 657px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Download-sec */
+  
+  .left-download {
+    width: 110px;
+  }
+  .right-download {
+    width: 110px;
+  }
+  .download-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin: 0 auto;
+  }
+  .download-para {
+    font-size: 13px;
+  }
+  .dowload-cntn > h4 {
+    font-size: 28px !important;
+    color: var(--clr-primary-100);
+    font-family: var(--ff-stolzl);
+    font-weight: 400;
+  }
+  .btn-download {
+    padding: 8px;
+    border: 1px solid var(--clr-primary-100);
+    color: var(--clr-primary-100);
+    font-family: var(--ff-stolzl);
+    font-size: 13px;
+    font-weight: 400;
+    border-radius: 30px;
+    cursor: pointer;
+    display: inline-block;
+  }
+  .mobile-img {
+    width: 130px;
+  }
+}
+
+/* ======== about-us start ======== */
+.about-us .section-content {
+  max-width: 100%;
+  margin-bottom: 24px;
+}
+.about-us .section-badge {
+  margin: 0;
+}
+.live-chat {
+  background: var(--clr-neutral-280);
+  padding: 20px;
+  border-radius: 30px;
+  max-width: 424px;
+  width: 100%;
+}
+.live-chat-content span {
+  display: block;
+  font-family: var(--ff-dm-sans);
+  font-weight: var(--fw-regular);
+  color: var(--clr-primary-100);
+}
+.live-chat-content span:first-child {
+  font-size: var(--fs-350);
+  margin-bottom: 24px;
+}
+.live-chat-content span:last-child {
+  font-size: var(--fs-300);
+  margin-bottom: 24px;
+  color: var(--clr-fade-500);
+}
+.live-chat-btn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.about-left {
+  position: relative;
+  padding-bottom: 45px;
+  margin: 0 auto;
+  margin-top: 50px;
+  width: fit-content;
+}
+/* .about-left > figure {
+  min-height: 800px;
+} */
+.about-left > div {
+  position: absolute;
+}
+.about-left > div:nth-child(2) {
+  top: 0;
+  left: 0;
+}
+.about-left > div:nth-child(3) {
+  left: 0;
+  bottom: 0;
+}
+.about-feature span {
+  display: block;
+  font-size: var(--fs-400);
+  font-weight: var(--fw-bold);
+  font-family: var(--ff-dm-sans);
+}
+.about-feature {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 70px;
+  border: 1px solid var(--clr-fade-400);
+}
+.about-wrapper .section-content {
+  max-width: 645px;
+  margin-top: 50px;
+}
+.about-wrapper .sec-heading {
+  margin-top: 0;
+  text-align: left;
+  letter-spacing: -0.04em;
+}
+.about-wrapper .sec-description {
+  text-align: left;
+  margin: 0;
+  max-width: 100%;
+}
+.about-wrapper .section-btn {
+  justify-content: left;
+  margin-top: 48px !important;
+}
+/* ======== about-us end ======== */

@@ -1,0 +1,110 @@
+.testimonial-sec {
+  background: url(/images/slider/slider-background.png) no-repeat center/cover;
+}
+ .test-badge{
+  color: var(--primary-color);
+  background: transparent;
+  box-shadow: none !important;
+  border: 1px solid var(--clr-primary-100);
+ }
+.test-head {
+  color: var(--primary-color);
+}
+.test-desc {
+  margin-bottom: 80px !important;
+  color: var(--primary-color);
+}
+.testimonial-card {
+  max-width: 424px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.22),
+    rgba(255, 255, 255, 0.06)
+  );
+
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border-radius: 10px;
+  padding: 20px 20px 30px;
+  color: var(--clr-primary-100);
+}
+
+.profile {
+  width: 88px;
+}
+.info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.name {
+  max-width: 272px;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--clr-primary-100);
+  font-family: "DM Sans", sans-serif;
+}
+.location {
+  max-width: 271px;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--clr-primary-100);
+  font-family: "DM Sans", sans-serif;
+}
+.info {
+  max-width: 271px;
+}
+.profile > img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.stars {
+  display: flex;
+  margin: 40px 0 50px;
+}
+.star {
+  width: 24px;
+}
+.star > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.slider-para {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--clr-primary-100);
+  font-family: "DM Sans", sans-serif;
+}
+
+/* Pagination style */
+.testimonialSwiper {
+  position: relative;
+  padding-bottom: 70px;
+}
+.testimonialSwiper .swiper-pagination {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+}
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #d9d9d9;
+  opacity: 1;
+  margin: 0 6px;
+}
+
+.swiper-pagination-bullet-active {
+  background: #b9fb6a;
+}
+
+/* slide-sec */
+  .test-desc {
+    margin-bottom: 40px !important;
+    color: var(--primary-color);
+  }

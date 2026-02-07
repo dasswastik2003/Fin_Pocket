@@ -1,0 +1,184 @@
+
+/* ====== why choose us section ===== */
+
+.why-choose-us h3 {
+  font-family: var(--ff-stolzl);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--letter-spacing-300);
+  margin-bottom: 16px;
+}
+
+.why-choose-us p {
+  font-family: var(--ff-dm-sans);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-regular);
+  color: var(--clr-fade-600);
+}
+
+.why-choose-us .btn {
+  pointer-events: none;
+}
+
+.buddget-planner-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  min-height: 500px;
+  margin: 60px 0;
+}
+
+.buddget-planner-wrapper>div {
+  /* height: 842px;  */
+  padding: 24px;
+}
+
+.buddget-planner-left figure {
+  margin: 0 auto;
+  width: fit-content;
+  height: 100%;
+}
+
+.buddget-planner-right {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  justify-content: space-between;
+  position: relative;
+}
+
+.feature-step {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.feature-step figure {
+  width: 120px;
+  height: 120px;
+  padding: 35px;
+  background: var(--clr-primary-200);
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 24px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.buddget-planner-right figure img {
+  width: 48px;
+  height: 48px;
+}
+
+.feature-step::before {
+  content: "";
+  position: absolute;
+  left: 55px;
+  /* center of icon */
+  top: 120px;
+  /* bottom of icon */
+  height: calc(100% + 80px);
+  width: 10px;
+  background: repeating-linear-gradient(to bottom,
+      var(--clr-primary-200) 0 6px,
+      transparent 6px 12px);
+}
+
+.feature-step::after {
+  content: "";
+  position: absolute;
+  left: 50px;
+  /* top: calc(100% + 16px); */
+  top: -15px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 14px solid var(--clr-primary-200);
+}
+
+.feature-step:last-child::before,
+.feature-step:first-child::after {
+  display: none;
+}
+/* responsive file css */
+@media screen and (max-width: 991px) {
+    .buddget-planner-wrapper > div {
+        height: 842px;
+        width: fit-content;
+        margin: 0 auto;
+    }
+}
+
+/* ========== Responsive =========== */
+
+
+@media screen and (max-width: 991px) {
+  .buddget-planner-wrapper > div {
+    height: 842px;
+    width: fit-content;
+    margin: 0 auto;
+  }
+  .buddget-planner-right figure {
+    padding: 30px;
+    border-radius: 34px;
+  }
+  .buddget-planner-right figure img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .buddget-planner-left {
+    display: none;
+  }
+  .buddget-planner-right {
+    margin: 0 auto;
+  }
+  .buddget-planner-right figure {
+    padding: 30px;
+    border-radius: 35px;
+  }
+  .feature-step {
+    gap: 16px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .buddget-planner-wrapper > div {
+    align-items: flex-start;
+  }
+  .feature-step figure {
+    width: 80px;
+    height: 80px;
+    border-radius: 30px;
+  }
+  .buddget-planner-right figure img {
+    width: 35px;
+    height: 35px;
+  }
+  .buddget-planner-wrapper > div {
+    height: 680px;
+  }
+  .feature-step::before {
+    left: 35px;
+    top: 80px;
+    height: calc(100% + 100px);
+  }
+  .feature-step::after {
+    left: 30px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .buddget-planner-right figure {
+    padding: 20px 24px;
+    border-radius: 25px;
+  }
+  .buddget-planner-right figure img {
+    width: 30px;
+    height: 30px;
+  }
+}

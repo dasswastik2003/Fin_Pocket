@@ -44,7 +44,8 @@ export default function RootLayout({
     '/auth/register',
     '/auth/otpverification',
     '/auth/forgetPassword',
-    '/auth/resetPassword'
+    '/auth/resetPassword',
+    '/dashboard',
 
   ]
 

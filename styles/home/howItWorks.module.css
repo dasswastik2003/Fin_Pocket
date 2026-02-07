@@ -1,0 +1,209 @@
+/* ==== How-it-works Section === */
+
+.daily-use-wrapper .row {
+  justify-content: center;
+  align-items: stretch;
+}
+
+.how-it-works .glass {
+  background: rgba(240, 237, 237, 0.2);
+}
+
+.how-it-works .section-content {
+  max-width: 650px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.daily-use-wrapper h3 {
+  font-size: var(--fs-350);
+  font-family: var(--ff-stolzl);
+  font-weight: var(--fw-regular);
+  color: var(--clr-primary-100);
+  letter-spacing: var(--ls-base);
+  text-align: center;
+}
+
+.daily-use-wrapper p {
+  font-family: var(--ff-dm-sans);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-light);
+  line-height: var(--lh-base);
+  text-align: center;
+  color: var(--clr-primary-100);
+}
+
+.daily-use-wrapper .col-4 {
+  display: flex;
+}
+
+.daily-use-wrapper .left,
+.daily-use-wrapper .mid,
+.daily-use-wrapper .right {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 20px;
+  margin: 16px;
+  border-radius: 20px;
+}
+
+.daily-use-wrapper .mid {
+  justify-content: space-between;
+}
+
+.daily-use-wrapper .row .col-4:nth-child(2n -1) h3 {
+  margin-top: 40px;
+}
+
+.daily-use-wrapper .row .col-4:nth-child(2n-1) p {
+  margin-top: 32px;
+}
+
+.signup-wrapper,
+.buddget-wrapper,
+.mid-wrapper {
+  padding: 20px;
+  border-radius: 20px;
+  background-color: var(--clr-primary-800);
+}
+
+.input-box {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  padding: 8px 12px;
+  border-radius: 20px;
+  margin: 22px 0;
+}
+
+.input-box figure {
+  margin-right: 8px;
+}
+
+/* .input-box figure img {
+  fill: var(--clr-primary-100);
+  fill-opacity: 0.6;
+} */
+
+.whiteIcon {
+  filter: brightness(0) invert(1);
+}
+
+.inputClr {
+  filter: invert(1) brightness(2);
+}
+
+
+.greenIcon {
+  filter: brightness(0) saturate(100%) invert(67%) sepia(70%) saturate(600%) hue-rotate(60deg) brightness(100%) contrast(100%);
+}
+
+
+.input-box input {
+  font-family: var(--ff-dm-sans);
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: var(--fs-300);
+  color: var(--clr-primary-100);
+  pointer-events: none;
+}
+
+.input-box:focus-within {
+  border-color: rgba(185, 251, 106, 1);
+  box-shadow: 0 0 0 3px rgba(185, 251, 106, 0.15);
+}
+
+.input-box:focus-within figure img {
+  fill: var(--clr-primary-200);
+}
+
+.input-box:focus-within input::placeholder {
+  color: var(--clr-primary-200);
+  opacity: 0.6;
+}
+
+.input-box input::placeholder {
+  color: var(--clr-fade-600);
+  font-family: var(--ff-dm-sans);
+}
+
+/* ===== Chrome / Safari Autofill Fix ===== */
+.input-box input:-webkit-autofill,
+.input-box input:-webkit-autofill:hover,
+.input-box input:-webkit-autofill:focus,
+.input-box input:-webkit-autofill:active {
+  -webkit-text-fill-color: rgba(255, 255, 255, 1) !important;
+  caret-color: rgba(255, 255, 255, 1);
+  /* Remove white background */
+  box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  background-color: transparent !important;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+.daily-use-wrapper .right .input-box {
+  padding: 24px 12px;
+}
+
+.submit-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.signup-btn {
+  padding: 10px 18px;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* == daily-use-row mid start ==*/
+
+.mid-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.mid-wrapper-inner {
+  max-width: 355px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.mid-wrapper-inner div:nth-child(n + 2) {
+  margin: 0 auto;
+}
+
+.mid-wrapper .users {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mid-wrapper .lines figure {
+  margin: 0 auto;
+  width: 85%;
+}
+
+.mid-wrapper-inner .mid-logo {
+  width: max-content;
+}
+
+.mid-wrapper h3 {
+  margin-top: 24px;
+}
+
+.left-wrapper,
+.right-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+

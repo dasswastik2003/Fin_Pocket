@@ -1,0 +1,161 @@
+.sec-heading {
+  font-family: var(--ff-stolzl);
+  font-size: var(--fs-500);
+  color: var(--clr-primary-100);
+  letter-spacing: var(--letter-spacing-300);
+  text-align: center;
+  margin: 48px 0;
+}
+
+.sec-heading span {
+  color: var(--clr-primary-200);
+}
+
+.sec-description {
+  font-family: var(--ff-dm-sans);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-regular);
+  text-align: center;
+  max-width: 90%;
+  margin: 0 auto;
+  color: var(--clr-fade-600);
+}
+
+.section-badge {
+  font-family: var(--ff-stolzl) !important;
+  font-size: var(--fs-300) !important;
+  font-weight: var(--fw-regular) !important;
+  color: var(--clr-primary-100);
+
+  width: max-content;
+  margin: 0 auto;
+  padding: 15px 20px;
+  border-radius: 50px;
+
+  /* Glass Base */
+  background: rgba(0, 0, 0, 0.2);
+
+  backdrop-filter: blur(14px) saturate(130%) contrast(95%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%) contrast(95%);
+
+  /* Border */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  /* Soft Glow + Depth */
+  box-shadow: 0 1px 0px rgba(255, 255, 255, 0.25),
+    0 6px 18px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+
+.section-badge::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(-45deg,
+      rgba(255, 255, 255, 0.35),
+      rgba(255, 255, 255, 0.06) 10%,
+      transparent 10%);
+  pointer-events: none;
+}
+
+.section-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 32px;
+}
+
+/* h3 {
+  font-family: var(--ff-dm-sans);
+  color: var(--clr-primary-100);
+  font-size: var(--fs-350);
+  font-weight: var(--fw-medium);
+} */
+
+/* ===== Section Left Right Gradient Start ====== */
+/* section {
+  position: relative;
+} */
+
+section::before,
+section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -11;
+}
+
+section::before {
+  left: 0;
+  background: radial-gradient(circle at left center,
+      rgba(185, 251, 106, 0.5),
+      transparent 85%);
+}
+
+section::after {
+  right: 0;
+  background: radial-gradient(circle at right center,
+      rgba(185, 251, 106, 0.5),
+      transparent 85%);
+}
+
+/* main {
+  position: relative;
+} */
+
+.grid {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+
+  background-image: repeating-linear-gradient(to right,
+      rgba(255, 255, 255, 0.05) 0,
+      rgba(255, 255, 255, 0.05) 1px,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px,
+      transparent 45px),
+    repeating-linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.05) 0,
+      rgba(255, 255, 255, 0.05) 1px,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px,
+      transparent 23px);
+  pointer-events: none;
+}
+
+.banner>*:not(.grid) {
+  position: relative;
+  z-index: 12;
+}
+
+.radial-blur {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  /* width: 600px;
+  height: 180px; */
+  width: clamp(360px, 60vw, 720px);
+  height: clamp(120px, 20vw, 220px);
+
+  transform: translate(-50%, -50%);
+
+  background: radial-gradient(ellipse at center,
+      rgba(185, 251, 106, 0.9) 0%,
+      rgba(185, 251, 106, 0.55) 25%,
+      rgba(185, 251, 106, 0.25) 45%,
+      rgba(185, 251, 106, 0.1) 60%,
+      rgba(185, 251, 106, 0.05) 70%,
+      rgba(185, 251, 106, 0.02) 80%,
+      rgba(185, 251, 106, 0) 100%);
+
+  filter: blur(120px);
+  /* CSS equivalent of Figma blur 500 */
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===== Section Left Right Gradient End ====== */

@@ -1,0 +1,64 @@
+/* ===== Service Section === */
+service .section-content {
+  max-width: 827px;
+  margin: 0 auto;
+  /* background: red; */
+}
+
+services .section-content p {
+  margin: 40px auto;
+  /* background: red; */
+}
+
+.service-card-wrapper {
+  margin-top: 80px;
+}
+
+.service-card-wrapper .row {
+  justify-content: center;
+}
+
+.service-card-wrapper .row>div>div {
+  flex-grow: 1;
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 16px 8px;
+  padding: 20px 10px;
+  min-height: 350px;
+}
+
+.service-card figure {
+  /* max-width: 250px; */
+  height: 230px;
+  width: 250px;
+  border-radius: 20px;
+  border: 1px solid var(--clr-fade-200);
+  position: relative;
+}
+
+.service-content {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.service-content h3 {
+  font-family: var(--ff-stolzl);
+  font-size: var(--fs-350);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--letter-spacing-300);
+  color: var(--clr-primary-100);
+}
+
+.service-content p {
+  font-family: var(--ff-dm-sans);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-regular);
+  color: var(--clr-fade-600);
+  line-height: 1.2;
+  margin-top: 20px;
+}

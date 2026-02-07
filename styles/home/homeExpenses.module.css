@@ -1,0 +1,456 @@
+/* ===== Expenses Section ===== */
+
+.expenses-section {
+  position: relative;
+  color: var(--clr-primary-100);
+}
+
+.expenses-section::before,
+.expenses-section::after {
+  width: 50%;
+}
+
+.expenses-section .section-content {
+  max-width: 100%;
+  margin-bottom: 80px;
+}
+
+.expenses-section .sec-heading {
+  margin-right: auto;
+  margin-bottom: 20px;
+  width: max-content;
+}
+
+.expenses-section .sec-description {
+  max-width: fit-content;
+  margin-left: 0;
+}
+
+.expenses-header {
+  text-align: left;
+  margin-bottom: 50px;
+}
+
+
+.expenses-header h2 {
+  font-family: var(--ff-stolzl);
+  font-size: var(--fs-500);
+  margin-bottom: 20px;
+}
+
+.expenses-header .highlight {
+  color: var(--clr-primary-200);
+}
+
+.expenses-header p {
+  font-size: var(--fs-300);
+  font-weight: var(--fw-regular);
+  color: var(--clr-fade-700);
+  font-family: var(--ff-dm-sans);
+}
+
+/* Summary Cards */
+.expenses-summary {
+  justify-content: center;
+  margin-bottom: 50px;
+  font-family: var(--ff-dm-sans);
+}
+
+.summary-card {
+  padding: 30px;
+}
+
+.summary-card p {
+  font-size: var(--fs-350);
+  color: var(--clr-primary-200);
+}
+
+.summary-card span {
+  display: block;
+  margin-top: 8px;
+  font-size: var(--fs-350);
+  color: var(--clr-fade-700);
+}
+
+.glass-border {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(22px) saturate(135%) contrast(95%);
+  --webkit-backdrop-filter: blur(22px) saturate(135%) contrast(95%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25),
+    0 12px 36px rgba(0, 0, 0, 0.45);
+  color: var(--clr-primary-100);
+}
+
+/* Table */
+.expenses-table table,
+.expenses-table th,
+.expenses-table td {
+  border-collapse: collapse;
+  border: 1px solid var(--clr-fade-200);
+}
+
+.expenses-table {
+  max-width: 872px;
+  height: fit-content;
+  font-family: var(--ff-dm-sans);
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  margin-top: 34px;
+  font-family: var(--ff-dm-sans);
+}
+
+.table-header h3 {
+  font-family: var(--ff-stolzl);
+}
+
+.table-header .btn {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  background: var(--clr-primary-900);
+  color: var(--clr-primary-100);
+  border: 1px solid var(--clr-fade-600);
+  border-radius: 9px;
+}
+
+.table-header .btn>svg {
+  margin-right: 10px;
+}
+
+.expenses-table th {
+  padding: 22px 20px;
+  font-size: var(--fs-300);
+  font-weight: var(--fw-bold);
+  font-family: var(--ff-dm-sans);
+  color: var(--clr-fade-600);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.exp-table .col:last-child {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.expenses-table {
+  overflow: auto;
+}
+
+.expenses-table table {
+  width: 100%;
+  /* table-layout: fixed; */
+}
+
+.expenses-table th,
+.expenses-table td {
+  padding: 16px 20px;
+  text-align: center;
+}
+
+.expenses-table td {
+  /* white-space: nowrap;
+  overflow: hidden; */
+  text-overflow: ellipsis;
+}
+
+/* Toggle */
+.toggle-on {
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 14px;
+  font-size: var(--fs-250);
+  font-weight: var(--fw-medium);
+  background: var(--clr-primary-650);
+  color: var(--clr-primary-900);
+}
+
+/* Variable Expenses */
+.variable-expenses .variable-card {
+  padding: 25px;
+  margin: 24px 0;
+  font-family: var(--ff-dm-sans);
+}
+
+.variable-card .card-top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.card-top>span {
+  margin-left: 16px;
+  font-size: var(--fs-400);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--letter-spacing-300);
+}
+
+.amount>span {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: var(--fs-300);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--letter-spacing-300);
+}
+
+.variable-card small {
+  color: var(--clr-fade-600);
+  font-size: var(--fs-300);
+  letter-spacing: var(--letter-spacing-300);
+}
+
+/* Progress Bar */
+.progress {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress>.progress-1 {
+  width: 65%;
+  display: block;
+  height: 100%;
+  background: var(--gradient-secondary);
+}
+
+.progress>.progress-2 {
+  width: 75%;
+  display: block;
+  height: 100%;
+  background: var(--gradient-secondary);
+}
+
+.progress>.progress-3 {
+  width: 85%;
+  display: block;
+  height: 100%;
+  background: var(--gradient-secondary);
+}
+
+/* Bottom CTA */
+.expenses-cta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 76px;
+}
+
+/* ===== Expenses Section End ===== */
+
+/* ==== Savings Goal Start */
+
+.goals-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+/* ++++ Left Column Start ++++ */
+.savings-column,
+.goals-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.goals-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-goal-btn {
+  padding: 10px;
+  background: url("/images/saving-goal/plus-icon.svg") var(--clr-deepyellow) no-repeat center center;
+  border-radius: 10px;
+  height: 50px;
+  width: 50px;
+}
+
+/* ++++ Left Side Wide Card Start ++++ */
+
+/* CARD */
+.goal-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 32px;
+  border-radius: 18px;
+  gap: 32px;
+}
+
+/* LEFT SIDE */
+.goal-info {
+  flex: 1;
+}
+
+.goals-layout h4 {
+  font-size: var(--fs-350);
+  font-weight: var(--fw-bold);
+  font-family: var(--ff-dm-sans);
+  color: var(--clr-primary-100);
+}
+
+.goal-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--fs-350);
+  margin: 30px 0;
+}
+
+/* RIGHT SIDE */
+
+.ring-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.25);
+  stroke-width: 10;
+}
+
+.ring-progress {
+  fill: none;
+  stroke: var(--clr-primary-100);
+  stroke-width: 10;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.6s ease;
+}
+
+.goals-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.wide-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(20px);
+}
+
+/* ==================================== Linear Progess Bar */
+.goal-progress-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+.progress-fill {
+  display: block;
+  border-radius: inherit;
+  height: 100%;
+  width: 0%;
+  background: var(--clr-primary-100);
+  transition: width 0.6s ease;
+}
+
+/* ==================================== Circle Styles */
+
+.goal-ring {
+  position: relative;
+  width: 122px;
+  height: 122px;
+  flex-shrink: 0;
+}
+
+.goal-ring svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+/* .wide-card .goal-ring svg {
+  width: 100%;
+  height: 100%;
+} */
+
+.ring-value {
+  /* wide card circle mid text */
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: var(--fs-350);
+  font-weight: var(--fw-bold);
+  pointer-events: none;
+}
+
+.ring-percent {
+  /* small card circle mid text */
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-350);
+}
+
+/* +-+-+ Right Column End +-+-+ */
+
+/* ================================ Small Card */
+.goal-card {
+  position: relative;
+  padding: 28px;
+  border-radius: 20px;
+  background: rgba(20, 30, 10, 0.75);
+  backdrop-filter: blur(18px);
+  color: #fff;
+}
+
+.goal-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 42px !important;
+}
+
+.goal-header img {
+  width: 28px;
+}
+
+.goal-target {
+  opacity: 0.85;
+  margin-bottom: 18px;
+  font-size: var(--fs-350);
+  font-weight: var(--fw-medium);
+}
+
+.goal-target span {
+  display: block;
+  font-size: var(--fs-300);
+  margin-top: 10px;
+}
+
+.goals-grid .goal-card {
+  flex-direction: column;
+  width: 100%;
+}
+
+.goals-grid .goal-card>div {
+  width: 100%;
+}
+
+.goals-grid .goal-card .goal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+/* ==== Savings Goal End */
+

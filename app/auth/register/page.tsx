@@ -3,10 +3,81 @@
 import React from 'react'
 import styles from "@/styles/register/register.module.css"
 import "@/styles/styles.css"
+import * as yup from "yup";
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/navigation';
+import { authRegistration } from '@/redux/slice/authSlice';
+
+const schema = yup.object().shape({
+    full_name: yup.string().required("Full Name is required"),
+    email: yup.string().email("Invalid Email").required("Email is required"),
+    // username: yup.string().required("Name is required"),
+    password: yup
+        .string()
+        .min(6, "Password must be at least 6 characters")
+        .max(20, "Password cannot exceed 20 characters")
+        .required("Password is required"),
+    confirm_password: yup
+        .string()
+        .oneOf([yup.ref("password")], "Passwords must match")
+        .required("Confirm Password is required"),
+});
 export default function Register() {
+    const dispatch = useDispatch();
+    const router = useRouter()
+    const {
+        register,
+        handleSubmit,
+        clearErrors,
+        formState: { errors },
+    } = useForm({
+        resolver: yupResolver(schema),
+    });
+
+    // const handleClick = async (data) => {
+    //     const autoUsername = data.email.split("@")[0];
+
+    //     const formData = new FormData();
+    //     formData.append("name", data.full_name);
+    //     formData.append("email", data.email);
+    //     formData.append("username", autoUsername);
+    //     formData.append("password", data.password);
+    //     formData.append("confirmPassword", data.confirm_password);
+
+    //     try {
+    //         let res = await dispatch(authRegistration(formData)).unwrap();
+    //         console.log(res, "ggghjcd")
+    //         if (res.status == true) {
+    //             router.push("/auth/otp")
+    //         } else {
+    //             // router.push("/auth/otp")
+    //         }
+    //     } catch (error) {
+
+    //     }
+
+    // };
+    const onSubmit = async (data: any) => {
+    const payload = {
+      email: data.email,
+      password: data.password,
+      confirm_password: data.confirm_password,
+      full_name: data.full_name,
+    };
+    try {
+      await dispatch(authRegistration(payload)).unwrap();
+      localStorage.setItem("email", data.email);
+      router.push("/auth/otpverification");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
     return (
         <>
-        <div className="radialBlur"></div>
+            <div className="radialBlur"></div>
             <section className={styles.loginSec}>
                 <div className="container">
                     <div className="row login-row">
@@ -16,21 +87,27 @@ export default function Register() {
                                 <p className="subtitle">
                                     Please enter your details to create an account
                                 </p>
-                                <form action="">
+                                <form action="" onSubmit={handleSubmit(onSubmit)}>
                                     <div className={styles.loginForm}>
                                         <label htmlFor="full-name">Full Name</label>
                                         <input
                                             type="text"
-                                            id="full-name"
-                                            name="full-name"
+                                            id="fullName"
+                                            name="fullName"
                                             placeholder="Enter your name"
+                                            {...register("full_name")}
                                         />
+                                        {errors.full_name && <span style={{ color: "red" }}>{errors.full_name.message}</span>} <br />
+
                                         <label htmlFor="email">Email address</label>
                                         <input
                                             id="email"
                                             type="email"
                                             placeholder="Enter your email address"
+                                            {...register("email")}
                                         />
+                                        {errors.email && <span style={{ color: "red" }}>{errors.email.message}</span>} <br />
+
                                         <div className={styles.rowBetween}>
                                             <label htmlFor="password">Password</label>
                                         </div>
@@ -39,14 +116,20 @@ export default function Register() {
                                             id="password"
                                             name="password"
                                             placeholder="Enter your password"
+                                            {...register("password")}
                                         />
+                                        {errors.password && <span style={{ color: "red" }}>{errors.password.message}</span>} <br />
+
                                         <label htmlFor="confirm-password">Confirm Password</label>
                                         <input
                                             type="password"
                                             id="confirm-password"
                                             name="confirm-password"
                                             placeholder="Re-enter your password"
+                                            {...register("confirm_password")}
                                         />
+                                        {errors.confirm_password && <span style={{ color: "red" }}>{errors.confirm_password.message}</span>} <br />
+
                                     </div>
                                     <div className={styles.terms}>
                                         <input type="checkbox" id="terms" />

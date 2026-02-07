@@ -42,7 +42,7 @@ export default function RootLayout({
     // '/signup',
     '/auth/login',
     '/auth/register',
-    '/auth/otpVerification',
+    '/auth/otpverification',
     '/auth/forgetPassword',
     '/auth/resetPassword'
 

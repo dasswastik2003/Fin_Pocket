@@ -1,27 +1,20 @@
-
 import axios from "axios";
 import { Cookies } from "react-cookie";
 
-let cookies = new Cookies()
-export const baseURL = `http://localhost:8000/`;
+const cookies = new Cookies();
+
+export const baseURL = "http://localhost:8000/";
+
 export const AxiosInstance = axios.create({
-    baseURL,
-    // withCredentials: true,
+  baseURL,
+  headers: { "Content-Type": "application/json" },
+  withCredentials: true,
 });
-AxiosInstance.interceptors.request.use(
-  function (config) {
-    // const token = localStorage.getItem("token")
-    const token =cookies.get("token");
-    console.log(token, "token");
-    if (token) {
-      config.headers = config.headers || {};
-      config.headers["x-access-token"] = token;
-    }
-    return config;
-  },
-  function (error) {
-    return Promise.reject(error);
-  }
-);
+
+AxiosInstance.interceptors.request.use((config) => {
+  const token = cookies.get("access_token");
+  if (token) config.headers.Authorization = `Bearer ${token}`;
+  return config;
+});
 
 export default AxiosInstance;

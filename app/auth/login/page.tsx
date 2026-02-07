@@ -5,7 +5,7 @@ import styles from "@/styles/login/login.module.css";
 import "@/styles/styles.css";
 import * as yup from "yup";
 import { useRouter } from 'next/navigation';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Cookies } from "react-cookie";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -23,35 +23,19 @@ const schema = yup.object({
 });
 
 export default function Login() {
+    const dispatch = useDispatch();
     const router = useRouter();
-    const dispatch = useDispatch()
-    const cookies = new Cookies()
-    const [message, setMessage] = useState("");
-    const [success, setSuccess] = useState(false);
+    const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(schema) });
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm({
-        resolver: yupResolver(schema),
-    });
-    const onSubmit = async (data) => {
+    const onSubmit = async (data: any) => {
         try {
-            const result = dispatch(authLogin(data));
-            let res = await result.unwrap();
-            if (res.status === true) {
-                cookies.set("token", res.token, { path: "/" })
-                toast.success("Login successful");
-                router.push("/");
-            }
-
-        } catch (err: any) {
-            setSuccess(false);
-            setMessage(err);
+            const res = await dispatch(authLogin({ email: data.email, password: data.password })).unwrap();
+            router.push("/features");
+        } catch (err) {
+            console.error(err);
         }
+    };
 
-    }
     return (
         <>
             <div className='radialBlur'></div>
@@ -69,20 +53,23 @@ export default function Login() {
                                             id="email"
                                             type="email"
                                             placeholder="Enter your email address"
+                                            {...register("email")}
                                         />
                                         {errors.email && (
                                             <p className="text-red-500 text-sm" style={{ color: "red" }}>{errors.email.message}</p>
                                         )}
                                         <div className={styles.rowBetween}>
                                             <label htmlFor="password">Password</label>
-                                            <a href="/auth/forgot-password" className={styles.passLink}>
+                                            <a href="/auth/forgetPassword" className={styles.passLink}>
                                                 Forgot Password?
                                             </a>
                                         </div>
                                         <input
                                             id="password"
                                             type="password"
-                                            placeholder="Enter your password" />
+                                            placeholder="Enter your password"
+                                            {...register("password")}
+                                        />
                                         {errors.password && (
                                             <p className="text-red-500 text-sm" style={{ color: "red" }}>{errors.password.message}</p>
                                         )}

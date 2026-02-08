@@ -57,7 +57,7 @@
 .steps-cards {
   background: var(--clr-primary-100);
   backdrop-filter: blur(18px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  /* -webkit-backdrop-filter: blur(18px) saturate(180%); */
 
   box-shadow: 0 4px 42px var(--clr-fade-250),
     inset 0 0 0.8px rgba(255, 255, 255, 0.5),

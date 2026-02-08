@@ -1,8 +1,8 @@
 import ContactBanner from '@/components/contactSections/contactBanner'
 import React from 'react'
 import styles from "../../styles/contact/contacts.module.css";
-import ContactDownload from '@/components/contactSections/contactDownload';
 import ContactSection from '@/components/contactSections/ContactSection';
+import DownloadSection from '@/components/homeSections/HomeDownload';
 
 export default function Contact() {
     return (
@@ -15,7 +15,7 @@ export default function Contact() {
             {/* contact part */}
             <ContactSection />
 
-            <ContactDownload/>
+            <DownloadSection/>
         </main>
     )
 }

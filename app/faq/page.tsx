@@ -8,12 +8,13 @@ import "@/styles/faq/faqSections.module.css"
 
 import React from 'react'
 import AccordionSections from '@/components/faqSections/accordionSections'
+import FAQAccordion from '@/components/pricingSections/FAQAccordion';
 
 export default function FaqPage() {
   return (
   <>
   <FaqBannerSections/>
-  <AccordionSections/>
+  <FAQAccordion/>
   <FaqTestimonialSections/>
   </>
   )

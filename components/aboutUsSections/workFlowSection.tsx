@@ -1,5 +1,5 @@
 "use client";
-
+import "@/styles/styles.css";
 export default function WorkflowSection() {
   const steps = [
     {
@@ -34,16 +34,16 @@ export default function WorkflowSection() {
       <div className="container">
         <div className="workflow-wrapper">
           <div className="row">
-            <div className="col col-6 col-lg-12">
+            <div className="col col-5 col-lg-12">
               <div className="workflow-content">
                 <div className="section-content">
                   <p className="section-badge">Workflow</p>
                   <h2 className="sec-heading">A smarter way to manage your money</h2>
-                  <p>Our ultimate solution for seamless and intelligent money management.</p>
+                  <p style={{color:"black"}}>Our ultimate solution for seamless and intelligent money management.</p>
                 </div>
                 <div className="savings-content">
                   <h3>Automated Savings</h3>
-                  <p>
+                  <p style={{color:"black"}}>
                     Effortlessly save money with our automated savings feature. Set your goals, and
                     Smart cash will so the rest, helping you achieve financial milestones without
                     even thinking about it
@@ -51,7 +51,7 @@ export default function WorkflowSection() {
                 </div>
                 <div className="expences-content">
                   <h3>Track your expenses</h3>
-                  <p>
+                  <p style={{color:"black"}}>
                     Stay on top of your spending with a simple and intuitive tracking system. Add,
                     edit, and monitor expenses in seconds, helping you understand where your money
                     goes and make smarter financial decisions every day.

@@ -39,7 +39,7 @@
 
 //       return res.data;
 //     } catch (err: any) {
-      
+
 //   return rejectWithValue(
 //     err.response?.data || { message: "Backend not reachable" }
 //   );
@@ -174,7 +174,7 @@ const initialState: AuthState = {
   username: null,
   email: null,
   isAuthenticated: false,
-  user: null, 
+  user: null,
   loading: false,
   error: null,
 };
@@ -195,27 +195,35 @@ export const authRegistration = createAsyncThunk(
       });
       return res.data;
     } catch (err: any) {
-      return rejectWithValue(err.response?.data || { message: "Backend not reachable" });
+      return rejectWithValue(
+        err.response?.data || { message: "Backend not reachable" },
+      );
     }
-  }
+  },
 );
 
 /* Login */
 export const authLogin = createAsyncThunk(
-    "auth/login",
-    async (credentials: { username: string; password: string }, { rejectWithValue }) => {
-        try {
-            const response = await axios.post("http://localhost:8000/api/account/login/", credentials);
-            return response.data; // backend returns message, access, refresh, user
-        } catch (err: any) {
-            // Catch backend error and pass it to frontend
-            if (err.response && err.response.data) {
-                return rejectWithValue(err.response.data);
-            } else {
-                return rejectWithValue({ error: "Network error" });
-            }
-        }
+  "auth/login",
+  async (
+    credentials: { username: string; password: string },
+    { rejectWithValue },
+  ) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/account/login/",
+        credentials,
+      );
+      return response.data; // backend returns message, access, refresh, user
+    } catch (err: any) {
+      // Catch backend error and pass it to frontend
+      if (err.response && err.response.data) {
+        return rejectWithValue(err.response.data);
+      } else {
+        return rejectWithValue({ error: "Network error" });
+      }
     }
+  },
 );
 
 /* Verify OTP */
@@ -223,12 +231,17 @@ export const verifyOtp = createAsyncThunk(
   "auth/verifyOtp",
   async (payload: { email: string; otp: string }, { rejectWithValue }) => {
     try {
-      const response = await AxiosInstance.post("/api/account/verify-otp/", payload);
+      const response = await AxiosInstance.post(
+        "/api/account/verify-otp/",
+        payload,
+      );
       return response.data;
     } catch (error: any) {
-      return rejectWithValue(error.response?.data || { message: "OTP verification failed" });
+      return rejectWithValue(
+        error.response?.data || { message: "OTP verification failed" },
+      );
     }
-  }
+  },
 );
 
 const authSlice = createSlice({
@@ -257,7 +270,22 @@ const authSlice = createSlice({
       })
       .addCase(authRegistration.rejected, (state, { payload }: any) => {
         state.loading = false;
-        toast.error(payload?.message || "Registration failed");
+
+        if (!payload) {
+          toast.error("Registration failed");
+          return;
+        }
+
+        // If payload has field errors
+        if (typeof payload === "object" && !payload.message) {
+          const messages = Object.entries(payload)
+            .map(([field, msgs]: any) => `${field}: ${msgs.join(", ")}`)
+            .join(" | ");
+          toast.error(messages);
+        } else {
+          // Generic message
+          toast.error(payload.message || "Registration failed");
+        }
       })
 
       /* OTP Verification */
@@ -280,20 +308,20 @@ const authSlice = createSlice({
       })
 
       /* Login */
-         .addCase(authLogin.pending, (state) => {
-                state.loading = true;
-                state.error = null;
-            })
-            .addCase(authLogin.fulfilled, (state, action) => {
-                state.loading = false;
-                state.user = action.payload.user;
-                state.error = null;
-            })
-            .addCase(authLogin.rejected, (state, action: any) => {
-                state.loading = false;
-                // Use backend error message if exists
-                state.error = action.payload?.error || "Login failed";
-            });
+      .addCase(authLogin.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(authLogin.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload.user;
+        state.error = null;
+      })
+      .addCase(authLogin.rejected, (state, action: any) => {
+        state.loading = false;
+        // Use backend error message if exists
+        state.error = action.payload?.error || "Login failed";
+      });
   },
 });
 

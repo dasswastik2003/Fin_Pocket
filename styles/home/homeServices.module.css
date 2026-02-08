@@ -1,11 +1,11 @@
 /* ===== Service Section === */
-service .section-content {
+.service .section-content {
   max-width: 827px;
   margin: 0 auto;
   /* background: red; */
 }
 
-services .section-content p {
+.services .section-content p {
   margin: 40px auto;
   /* background: red; */
 }

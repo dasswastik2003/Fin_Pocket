@@ -16,7 +16,7 @@ export default function Footer() {
                     <img src="/images/navbar/logo.svg" alt="Fin Pocket" />
                   </a>
                 </div>
-                <p className={styles.footerText}>
+                <p className={styles.footerText} style={{textAlign:"start"}}>
                   Take Control of Your Financial Journey
                 </p>
                 <form className={styles.newsletterForm}>

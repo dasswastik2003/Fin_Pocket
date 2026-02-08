@@ -9,6 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { authRegistration } from '@/redux/slice/authSlice';
+import { toast } from 'sonner';
 
 const schema = yup.object().shape({
     full_name: yup.string().required("Full Name is required"),
@@ -60,20 +61,30 @@ export default function Register() {
 
     // };
     const onSubmit = async (data: any) => {
-    const payload = {
-      email: data.email,
-      password: data.password,
-      confirm_password: data.confirm_password,
-      full_name: data.full_name,
+        const payload = {
+            email: data.email,
+            password: data.password,
+            confirm_password: data.confirm_password,
+            full_name: data.full_name,
+        };
+        try {
+            await dispatch(authRegistration(payload)).unwrap();
+            localStorage.setItem("email", data.email);
+            router.push("/auth/otpverification");
+        } catch (err: any) {
+            if (err?.email || err?.username) {
+                const messages = Object.entries(err)
+                    .map(([field, msgs]: any) => `${field}: ${msgs.join(", ")}`)
+                    .join(" | ");
+                toast.error(messages);
+            } else if (err?.message) {
+                toast.error(err.message);
+            } else {
+                toast.error("Registration failed");
+            }
+        }
+
     };
-    try {
-      await dispatch(authRegistration(payload)).unwrap();
-      localStorage.setItem("email", data.email);
-      router.push("/auth/otpverification");
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
     return (
         <>

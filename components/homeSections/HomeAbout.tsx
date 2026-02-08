@@ -16,7 +16,7 @@ export default function AboutUs() {
                 <div className={styles["about-wrapper"]}>
                     <div className="row">
                         <div
-                            className="col col-6 col-lg-12"
+                            className="col col-5 col-lg-12"
                         >
                             {/* ======= main div */}
                             <div className={styles["about-left"]}>

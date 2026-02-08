@@ -6,19 +6,20 @@ import styles from "@/styles/home/homeBanner.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import Link from "next/link";
+// import '@/styles/styles.css';
 
 
 
 const HomeBanner = () => {
   const clients = [
-    { src: "/images/home/google-pay.png", alt: "google-pay" },
-    { src: "/images/home/phonepe.png", alt: "phonepe" },
-    { src: "/images/home/razorpay.png", alt: "razorpay" },
-    { src: "/images/home/hdfc.png", alt: "hdfc" },
-    { src: "/images/home/paytm.png", alt: "paytm" },
-    { src: "/images/home/paypal.png", alt: "paypal" },
-    { src: "/images/home/icici.png", alt: "icici" },
-    { src: "/images/home/bharat-pay.png", alt: "bharat-pay" },
+    { src: "/images/users/google-pay.png", alt: "google-pay" },
+    { src: "/images/users/phonepe.png", alt: "phonepe" },
+    { src: "/images/users/razorpay.png", alt: "razorpay" },
+    { src: "/images/users/hdfc.png", alt: "hdfc" },
+    { src: "/images/users/paytm.png", alt: "paytm" },
+    { src: "/images/users/paypal.png", alt: "paypal" },
+    { src: "/images/users/icici.png", alt: "icici" },
+    { src: "/images/users/bharat-pay.png", alt: "bharat-pay" },
   ];
   return (
     <>
@@ -60,7 +61,7 @@ const HomeBanner = () => {
           {/* RIGHT IMAGE */}
           <div className={styles["banner-image"]}>
             <Image
-              src="/images/home/dashboard.svg"
+              src="/images/banner/dashboard.svg"
               alt="Dashboard"
               width={500}
               height={400}

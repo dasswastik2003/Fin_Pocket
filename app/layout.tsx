@@ -46,6 +46,9 @@ export default function RootLayout({
     '/auth/forgetPassword',
     '/auth/resetPassword',
     '/dashboard',
+    '/expense/budget',
+    '/expense',
+    '/profile',
 
   ]
 

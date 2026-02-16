@@ -1,11 +1,13 @@
+import DashboardPage from '@/components/dashboardLayout/Dashboard'
 
-import DashboardSection from '@/components/dashboardSections/dashboardSection'
 import React from 'react'
 
-export default function Dashboard() {
+const Dashboard = () => {
   return (
     <>
-    <DashboardSection/>
+    <DashboardPage/>
     </>
   )
 }
+
+export default Dashboard

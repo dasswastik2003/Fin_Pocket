@@ -1,13 +1,29 @@
+// import { configureStore } from "@reduxjs/toolkit";
+// import authSlice from "../slice/authSlice";
+// import expenseReducer from "../slice/expenseSlice";
+
+// export const store = configureStore({
+//     reducer: {
+//         auth: authSlice.reducer,
+//         expenses: expenseReducer,
+//     }
+// })
+// export type RootState = ReturnType<typeof store.getState>;
+// export type AppDispatch = typeof store.dispatch;
+// export default store;
+
 import { configureStore } from "@reduxjs/toolkit";
-import authSlice from "../slice/authSlice";
+import authReducer from "../slice/authSlice";
 import expenseReducer from "../slice/expenseSlice";
 
 export const store = configureStore({
-    reducer: {
-        auth: authSlice.reducer,
-        expenses: expenseReducer,
-    }
-})
+  reducer: {
+    auth: authReducer,
+    expenses: expenseReducer,
+  },
+});
+
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
 export default store;

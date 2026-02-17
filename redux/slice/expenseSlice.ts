@@ -4,10 +4,10 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
 export interface Expense {
   id: number;
-  category: string;
+  category: number | string;
   amount: string;
   date: string;
-  note: string;
+  notes: string; // ✅ backend field
 }
 
 interface ExpenseState {
@@ -30,10 +30,6 @@ export const fetchExpenses = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const res = await AxiosInstance.get(endPoints.expenses.list);
-
-      console.log("Expense API Response:", res.data);
-
-      // API might return: {data: []} or {results: []} or direct []
       return res.data;
     } catch (error: any) {
       return rejectWithValue(error.response?.data || error.message);
@@ -62,7 +58,10 @@ export const updateExpense = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
-      const res = await AxiosInstance.put(endPoints.expenses.update(id), payload);
+      const res = await AxiosInstance.put(
+        endPoints.expenses.update(id),
+        payload
+      );
       return res.data;
     } catch (error: any) {
       return rejectWithValue(error.response?.data || error.message);
@@ -96,7 +95,6 @@ const expenseSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // ================= FETCH =================
       .addCase(fetchExpenses.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -104,7 +102,6 @@ const expenseSlice = createSlice({
       .addCase(fetchExpenses.fulfilled, (state, action) => {
         state.loading = false;
 
-        // handle all response types
         const payload = action.payload;
 
         if (Array.isArray(payload)) {
@@ -122,22 +119,17 @@ const expenseSlice = createSlice({
         state.error = action.payload;
       })
 
-      // ================= CREATE =================
       .addCase(createExpense.fulfilled, (state, action) => {
         const payload = action.payload;
-
-        const newExpense: Expense =
-          payload?.data || payload?.result || payload;
+        const newExpense: Expense = payload?.data || payload?.result || payload;
 
         if (newExpense) {
           state.expenses.unshift(newExpense);
         }
       })
 
-      // ================= UPDATE =================
       .addCase(updateExpense.fulfilled, (state, action) => {
         const payload = action.payload;
-
         const updatedExpense: Expense =
           payload?.data || payload?.result || payload;
 
@@ -152,7 +144,6 @@ const expenseSlice = createSlice({
         state.selectedExpense = null;
       })
 
-      // ================= DELETE =================
       .addCase(deleteExpense.fulfilled, (state, action) => {
         state.expenses = state.expenses.filter(
           (item) => item.id !== action.payload

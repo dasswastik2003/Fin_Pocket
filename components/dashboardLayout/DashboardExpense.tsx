@@ -1,11 +1,117 @@
-import Image from "next/image";
-import Link from "next/link";
-import '@/styles/expensecss/expense.css'
+"use client";
 
-export default function ExpensePage() {
+import Image from "next/image";
+import "@/styles/expensecss/expense.css";
+
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import type { RootState, AppDispatch } from "@/redux/store/store";
+
+import {
+  fetchExpenses,
+  createExpense,
+  updateExpense,
+  deleteExpense,
+  setSelectedExpense,
+  clearSelectedExpense,
+} from "@/redux/slice/expenseSlice";
+
+export default function DashboardExpense() {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const { expenses, loading, selectedExpense } = useSelector(
+    (state: RootState) => state.expenses
+  );
+
+  const [formData, setFormData] = useState({
+    category: "",
+    amount: "",
+    date: "",
+    note: "",
+  });
+
+  // Load Expenses
+  useEffect(() => {
+    dispatch(fetchExpenses());
+  }, [dispatch]);
+
+  // Fill Form When Edit Click
+  useEffect(() => {
+    if (selectedExpense) {
+      setFormData({
+        category: selectedExpense.category || "",
+        amount: selectedExpense.amount || "",
+        date: selectedExpense.date || "",
+        note: selectedExpense.note || "",
+      });
+    }
+  }, [selectedExpense]);
+
+  // Handle Input Change
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  // Submit Create/Update
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!formData.category || !formData.amount || !formData.date) {
+      alert("Category, Amount, Date are required!");
+      return;
+    }
+
+    if (selectedExpense) {
+      await dispatch(
+        updateExpense({
+          id: selectedExpense.id,
+          payload: formData,
+        })
+      );
+
+      dispatch(clearSelectedExpense());
+      dispatch(fetchExpenses()); // IMPORTANT
+    } else {
+      await dispatch(createExpense(formData));
+      dispatch(fetchExpenses()); // IMPORTANT
+    }
+
+    setFormData({
+      category: "",
+      amount: "",
+      date: "",
+      note: "",
+    });
+  };
+
+  // Delete
+  const handleDelete = async (id: number) => {
+    if (confirm("Are you sure you want to delete this expense?")) {
+      await dispatch(deleteExpense(id));
+      dispatch(fetchExpenses()); // IMPORTANT
+    }
+  };
+
+  // Cancel Edit
+  const handleCancelEdit = () => {
+    dispatch(clearSelectedExpense());
+    setFormData({
+      category: "",
+      amount: "",
+      date: "",
+      note: "",
+    });
+  };
+
   return (
     <div className="container">
-      <h1 className="title">Expense Management</h1>
+      <h1 className="title" style={{ marginTop: "60px", textAlign: "center" }}>
+        Expense Management
+      </h1>
+
       <p className="subtitle">
         Track and manage your business expenditures with ease.
       </p>
@@ -22,75 +128,99 @@ export default function ExpensePage() {
                 height={30}
               />
             </figure>
-            <h2>Add New Expense</h2>
+
+            <h2>{selectedExpense ? "Edit Expense" : "Add New Expense"}</h2>
           </div>
 
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="category">Category</label>
 
-              <select className="input" id="category" defaultValue="">
+              <select
+                className="input"
+                id="category"
+                value={formData.category}
+                onChange={handleChange}
+              >
                 <option value="" disabled>
                   Select category
                 </option>
 
                 <optgroup label="Operational">
-                  <option>Office Supplies</option>
-                  <option>Utilities</option>
-                  <option>Rent</option>
-                  <option>Maintenance</option>
-                  <option>Internet & Phone</option>
+                  <option value="Office Supplies">Office Supplies</option>
+                  <option value="Utilities">Utilities</option>
+                  <option value="Rent">Rent</option>
+                  <option value="Maintenance">Maintenance</option>
+                  <option value="Internet & Phone">Internet & Phone</option>
                 </optgroup>
 
                 <optgroup label="Travel & Client">
-                  <option>Travel</option>
-                  <option>Accommodation</option>
-                  <option>Meals</option>
-                  <option>Client Entertainment</option>
-                  <option>Transportation</option>
+                  <option value="Travel">Travel</option>
+                  <option value="Accommodation">Accommodation</option>
+                  <option value="Meals">Meals</option>
+                  <option value="Client Entertainment">
+                    Client Entertainment
+                  </option>
+                  <option value="Transportation">Transportation</option>
                 </optgroup>
 
                 <optgroup label="Technology">
-                  <option>Software Subscription</option>
-                  <option>Hardware</option>
-                  <option>Cloud Services</option>
-                  <option>Web Hosting</option>
-                  <option>Domain Renewal</option>
+                  <option value="Software Subscription">
+                    Software Subscription
+                  </option>
+                  <option value="Hardware">Hardware</option>
+                  <option value="Cloud Services">Cloud Services</option>
+                  <option value="Web Hosting">Web Hosting</option>
+                  <option value="Domain Renewal">Domain Renewal</option>
                 </optgroup>
 
                 <optgroup label="Marketing">
-                  <option>Advertising</option>
-                  <option>Social Media Ads</option>
-                  <option>Printing</option>
-                  <option>Branding</option>
-                  <option>Content Creation</option>
+                  <option value="Advertising">Advertising</option>
+                  <option value="Social Media Ads">Social Media Ads</option>
+                  <option value="Printing">Printing</option>
+                  <option value="Branding">Branding</option>
+                  <option value="Content Creation">Content Creation</option>
                 </optgroup>
 
                 <optgroup label="HR & Admin">
-                  <option>Salaries</option>
-                  <option>Freelancers</option>
-                  <option>Training</option>
-                  <option>Recruitment</option>
-                  <option>Insurance</option>
+                  <option value="Salaries">Salaries</option>
+                  <option value="Freelancers">Freelancers</option>
+                  <option value="Training">Training</option>
+                  <option value="Recruitment">Recruitment</option>
+                  <option value="Insurance">Insurance</option>
                 </optgroup>
 
                 <optgroup label="Finance">
-                  <option>Bank Charges</option>
-                  <option>Taxes</option>
-                  <option>Loan Repayment</option>
-                  <option>Accounting Services</option>
+                  <option value="Bank Charges">Bank Charges</option>
+                  <option value="Taxes">Taxes</option>
+                  <option value="Loan Repayment">Loan Repayment</option>
+                  <option value="Accounting Services">
+                    Accounting Services
+                  </option>
                 </optgroup>
               </select>
             </div>
 
             <div className="form-group">
               <label htmlFor="amount">Amount</label>
-              <input className="input" placeholder="$ 0.00" id="amount" />
+              <input
+                className="input"
+                placeholder="$ 0.00"
+                id="amount"
+                value={formData.amount}
+                onChange={handleChange}
+              />
             </div>
 
             <div className="form-group">
               <label htmlFor="date">Date</label>
-              <input type="date" id="date" className="input" />
+              <input
+                type="date"
+                id="date"
+                className="input"
+                value={formData.date}
+                onChange={handleChange}
+              />
             </div>
 
             <div className="form-group">
@@ -99,14 +229,27 @@ export default function ExpensePage() {
                 className="input"
                 id="note"
                 placeholder="Description of the expense..."
+                value={formData.note}
+                onChange={handleChange}
               ></textarea>
             </div>
 
             <input
               type="submit"
-              value="Submit Expense"
+              value={selectedExpense ? "Update Expense" : "Submit Expense"}
               className="submit-btn"
             />
+
+            {selectedExpense && (
+              <button
+                type="button"
+                onClick={handleCancelEdit}
+                className="submit-btn"
+                style={{ marginTop: "12px", background: "#444" }}
+              >
+                Cancel Edit
+              </button>
+            )}
           </form>
         </div>
 
@@ -138,125 +281,80 @@ export default function ExpensePage() {
                 </thead>
 
                 <tbody>
-                  <tr>
-                    <td>Oct 24, 2023</td>
-                    <td>
-                      <span className="badge travel">
-                        <div className="travel-ico"></div>
-                        Travel
-                      </span>
-                    </td>
-                    <td>Flight to Chicago for Q4 conference</td>
-                    <td>$450.00</td>
-                    <td>
-                      <ul className="actions">
-                        <li>
-                          <button className="edit-btn-ico"></button>
-                        </li>
-                        <li>
-                          <button className="del-btn-ico"></button>
-                        </li>
-                      </ul>
-                    </td>
-                  </tr>
+                  {loading ? (
+                    <tr>
+                      <td colSpan={5} style={{ textAlign: "center" }}>
+                        Loading...
+                      </td>
+                    </tr>
+                  ) : expenses.length > 0 ? (
+                    expenses.map((item) => (
+                      <tr key={item.id}>
+                        <td>{item.date}</td>
 
-                  <tr>
-                    <td>Oct 23, 2023</td>
-                    <td>
-                      <span className="badge meal">
-                        <div className="meal-ico"></div>
-                        Meals
-                      </span>
-                    </td>
-                    <td>Client lunch meeting</td>
-                    <td>$84.50</td>
-                    <td>
-                      <ul className="actions">
-                        <li>
-                          <button className="edit-btn-ico"></button>
-                        </li>
-                        <li>
-                          <button className="del-btn-ico"></button>
-                        </li>
-                      </ul>
-                    </td>
-                  </tr>
+                        <td>
+                          <span className="badge travel">{item.category}</span>
+                        </td>
 
-                  <tr>
-                    <td>Oct 22, 2023</td>
-                    <td>
-                      <span className="badge office">
-                        <div className="office-ico"></div>
-                        Office Supplies
-                      </span>
-                    </td>
-                    <td>Printer toner and paper</td>
-                    <td>$125.20</td>
-                    <td>
-                      <ul className="actions">
-                        <li>
-                          <button className="edit-btn-ico"></button>
-                        </li>
-                        <li>
-                          <button className="del-btn-ico"></button>
-                        </li>
-                      </ul>
-                    </td>
-                  </tr>
+                        <td>{item.note}</td>
 
-                  <tr>
-                    <td>Oct 20, 2023</td>
-                    <td>
-                      <span className="badge software">
-                        <div className="soft-ico"></div>
-                        Software
-                      </span>
-                    </td>
-                    <td>Annual cloud storage subscription</td>
-                    <td>$240.00</td>
-                    <td>
-                      <ul className="actions">
-                        <li>
-                          <button className="edit-btn-ico"></button>
-                        </li>
-                        <li>
-                          <button className="del-btn-ico"></button>
-                        </li>
-                      </ul>
-                    </td>
-                  </tr>
+                        <td>${item.amount}</td>
+
+                        <td>
+                          <ul className="actions">
+                            <li>
+                              <button
+                                type="button"
+                                className="edit-btn-ico"
+                                onClick={() =>
+                                  dispatch(setSelectedExpense(item))
+                                }
+                              ></button>
+                            </li>
+
+                            <li>
+                              <button
+                                type="button"
+                                className="del-btn-ico"
+                                onClick={() => handleDelete(item.id)}
+                              ></button>
+                            </li>
+                          </ul>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan={5} style={{ textAlign: "center" }}>
+                        No expenses found
+                      </td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>
           </div>
 
-          {/* STATS */}
+          {/* STATS SECTION (Your Design Same) */}
           <div className="stats">
-            {/* Card 1 */}
             <div className="financial-card">
               <div className="financial-card-header">
                 <span>Monthly Budget</span>
                 <span className="positive">↗ 12%</span>
               </div>
-
               <h3>$5,000.00</h3>
-
               <div className="progress">
                 <div className="progress-fill"></div>
               </div>
-
               <p className="sub-text">65% of budget used</p>
             </div>
 
-            {/* Card 2 */}
             <div className="financial-card">
               <div className="financial-card-header">
                 <span>Total Expenses (MTD)</span>
                 <span className="financial-negative">↗ 8.4%</span>
               </div>
-
               <h3>$3,249.70</h3>
-
               <div className="financial-mini-chart">
                 <span></span>
                 <span></span>
@@ -265,7 +363,6 @@ export default function ExpensePage() {
               </div>
             </div>
 
-            {/* Card 3 */}
             <div className="financial-card">
               <div className="financial-card-header">
                 <span>Pending Approvals</span>
@@ -304,9 +401,9 @@ export default function ExpensePage() {
                 </div>
               </div>
 
-              <Link href="#" className="fn-btn">
+              <a href="#" className="fn-btn">
                 View report queue →
-              </Link>
+              </a>
             </div>
           </div>
         </div>

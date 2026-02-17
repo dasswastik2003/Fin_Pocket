@@ -1,17 +1,22 @@
+"use client"
+
 import Link from "next/link";
 import Image from "next/image";
 import '@/styles/expensecss/topbar.css'
+import { useSelector } from "react-redux";
 
 
 
 export default function DashboardHeader() {
+  const { userId } = useSelector((state: any) => state.auth);
+
   return (
     <header className="topbar">
       <div className="topbar-left">
         {/* ✅ MENU BUTTON */}
         <div className="brand">
           <Link
-            href="https://bikram8538.github.io/fin-pocket/"
+            href="/"
             target="_blank"
             className="brand-logo"
           >
@@ -29,7 +34,7 @@ export default function DashboardHeader() {
 
       <div className="topbar-right">
         <div className="profile-mini">
-          <strong className="name">Rajan Dutta</strong>
+          <strong className="name">{userId?.first_name} {userId?.last_name}</strong>
           <span className="avatar"></span>
         </div>
       </div>

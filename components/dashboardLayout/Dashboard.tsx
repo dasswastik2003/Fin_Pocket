@@ -1,7 +1,19 @@
+"use client"
+
 import React from 'react'
 import "@/styles/dashboardcss/dashBoard.css"
+import { useDispatch } from 'react-redux';
+import { Cookies } from 'react-cookie';
+import { logout } from '@/redux/slice/authSlice';
+import Link from 'next/link';
 
 export default function DashboardSection() {
+   const dispatch = useDispatch()
+    const cookies = new Cookies();
+    const Logout = () => {
+        cookies.remove("token", { path: "/" });
+        dispatch(logout())
+    }
   return (
     <>
     
@@ -17,7 +29,7 @@ export default function DashboardSection() {
           <div className="sidebar-header">
             <div className="brand">
               <a
-                href="https://bikram8538.github.io/fin-pocket/"
+                href="/"
                 className="brand-logo"
               >
                 <figure>
@@ -29,7 +41,7 @@ export default function DashboardSection() {
             <div className="user">
               <div className="user-img" />
               <div className="user-info">
-                <strong className="user-name">Rajan Dutta</strong>
+                <strong className="user-name"> </strong>
                 <span className="ac-type">Personal Account</span>
               </div>
               <div className="user-chevron" />
@@ -67,9 +79,10 @@ export default function DashboardSection() {
               <a className="nav-link" href="#">
                 <span className="ico" /> Help center
               </a>
-              <a className="nav-link" href="#">
+              <Link className="nav-link" href={"/auth/login"} color="inherit" onClick={() => Logout()}>
                 <span className="ico" /> Log out
-              </a>
+              </Link>
+
             </nav>
           </div>
 

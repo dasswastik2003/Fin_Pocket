@@ -1,169 +1,215 @@
-import Image from "next/image";
-import '@/styles/budgetcss/buget.css'
+"use client";
+
+import "@/styles/budgetcss/buget.css";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createBudget,
+  fetchBudgets,
+  fetchCategories,
+} from "@/redux/slice/budgetSlice";
 
 export default function BudgetPage() {
+  const dispatch = useDispatch<any>();
+
+  const { budgets, categories, loading } = useSelector(
+    (state: any) => state.budget
+  );
+
+  /* ================= VALIDATION ================= */
+
+  const schema = Yup.object().shape({
+    category: Yup.number()
+      .typeError("Category is required")
+      .required("Category is required"),
+
+    month: Yup.string()
+      .required("Month is required")
+      .matches(/^\d{4}-(0[1-9]|1[0-2])$/, "Format must be YYYY-MM"),
+
+    amount: Yup.number()
+      .typeError("Amount must be number")
+      .required("Amount is required")
+      .positive("Amount must be positive"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  /* ================= LOCAL STATE ================= */
+
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+
+  /* ================= FETCH DATA ================= */
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+    dispatch(fetchBudgets());
+    console.log("categories", categories)
+  }, [dispatch]);
+
+  /* ================= SUBMIT ================= */
+
+  const onSubmit = async (data: any) => {
+    const formattedData = {
+      category: Number(data.category),
+      month: data.month + "-01", // backend expects full date
+      amount: Number(data.amount),
+    };
+
+    const result = await dispatch(createBudget(formattedData));
+
+    if (createBudget.fulfilled.match(result)) {
+      reset();
+      setSelectedCategory("");
+      setIsOpen(false);
+    }
+  };
+
+  /* ================= RENDER ================= */
+
   return (
     <div className="container">
-      {/* TITLE SECTION */}
+      {/* ================= TITLE ================= */}
       <div className="title-section">
-        <h1>Monthly Budget Management</h1>
-        <p>Plan your expenses and take control of your monthly spending.</p>
+        <h1 style={{ marginTop: "130px" }}>
+          Monthly Budget Management
+        </h1>
+        <p>Plan your expenses and control monthly spending.</p>
       </div>
 
-      {/* CREATE NEW BUDGET CARD */}
+      {/* ================= CREATE BUDGET ================= */}
       <div className="card budget-card">
         <div className="card-header">
           <span className="green-dot"></span>
           Create New Budget
         </div>
 
-        <div className="form-row">
-          <div className="form-group custom-select-wrapper">
-            <label>Category</label>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="form-row">
 
-            <div className="custom-select">
-              <div className="select-trigger">Select category</div>
+            {/* CATEGORY */}
+            <div className="form-group custom-select-wrapper">
+              <label>Category</label>
 
-              <div className="select-dropdown">
-                <div className="select-item">Housing</div>
-                <div className="select-item">Food</div>
-                <div className="select-item">Transport</div>
-                <div className="select-item">Bills</div>
-                <div className="select-item">EMI</div>
+              <div className={`custom-select ${isOpen ? "active" : ""}`}>
+                <div
+                  className="select-trigger"
+                  onClick={() => setIsOpen(!isOpen)}
+                >
+                  {selectedCategory || "Select category"}
+                </div>
+
+                {isOpen && (
+                  <div className="select-dropdown">
+                    {categories?.length > 0 ? (
+                      categories.map((item: any) => (
+                        <div
+                          key={item.id}
+                          className="select-item"
+                          onClick={() => {
+                            setSelectedCategory(item.name);
+                            setValue("category", item.id, {
+                              shouldValidate: true,
+                            });
+                            setIsOpen(false);
+                          }}
+                        >
+                          {item.name}
+                        </div>
+                      ))
+                    ) : (
+                      <div className="select-item">
+                        No categories found
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
+
+              <input type="hidden" {...register("category")} />
+              <p className="error">{errors.category?.message}</p>
+            </div>
+
+            {/* MONTH */}
+            <div className="form-group">
+              <label>Month (YYYY-MM)</label>
+              <input
+                type="text"
+                placeholder="2026-02"
+                {...register("month")}
+              />
+              <p className="error">{errors.month?.message}</p>
             </div>
           </div>
 
-          <div className="form-group">
-            <label>Month (YYYY-MM)</label>
-            <input type="text" placeholder="---- --" />
+          {/* AMOUNT */}
+          <div className="form-group full">
+            <label>Budget Amount</label>
+            <input
+              type="number"
+              step="0.01"
+              placeholder="5000"
+              {...register("amount")}
+            />
+            <p className="error">{errors.amount?.message}</p>
           </div>
-        </div>
 
-        <div className="form-group full">
-          <label>Budget Amount</label>
-          <input type="text" placeholder="$ 0.00" />
-        </div>
-
-        <button className="btn-green">Save Budget</button>
+          <button type="submit" className="btn-green" disabled={loading}>
+            {loading ? "Saving..." : "Save Budget"}
+          </button>
+        </form>
       </div>
 
-      {/* EXISTING BUDGET TABLE */}
-      <div className="card table-card">
-        <div className="card-header table-header">
-          <div>
-            <span className="green-dot"></span>
-            Existing Budgets
-          </div>
-          <div className="entries">3 ENTRIES</div>
+      {/* ================= BUDGET LIST ================= */}
+      <div className="card budget-list-card">
+        <div className="card-header">
+          <span className="green-dot"></span>
+          Budget List
         </div>
 
-        <table>
-          <thead>
-            <tr>
-              <th>CATEGORY</th>
-              <th>MONTH</th>
-              <th>AMOUNT</th>
-              <th>ACTIONS</th>
-            </tr>
-          </thead>
+        {!Array.isArray(budgets) || budgets.length === 0 ? (
+          <p style={{ padding: "20px" }}>
+            No budgets added yet.
+          </p>
+        ) : (
+          <table className="budget-table">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Month</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              {budgets.map((item: any) => {
+                const categoryName =
+                  categories.find(
+                    (cat: any) => cat.id === item.category
+                  )?.name || "Unknown";
 
-          <tbody>
-            <tr>
-              <td>
-                <div className="category">
-                  <span className="cat-icon food">
-                    <Image
-                      src="/images/budget/icon-1.png"
-                      alt="food"
-                      width={20}
-                      height={20}
-                    />
-                  </span>
-                  Food & Dining
-                </div>
-              </td>
-              <td>2023-10</td>
-              <td>$1,200.00</td>
-              <td>
-                <ul className="actions">
-                  <li>
-                    <button className="edit-btn-ico"></button>
-                  </li>
-                  <li>
-                    <button className="del-btn-ico"></button>
-                  </li>
-                </ul>
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <div className="category">
-                  <span className="cat-icon travel">
-                    <Image
-                      src="/images/budget/icon-2.png"
-                      alt="travel"
-                      width={20}
-                      height={20}
-                    />
-                  </span>
-                  Travel
-                </div>
-              </td>
-              <td>2023-11</td>
-              <td>$3,500.00</td>
-              <td>
-                <ul className="actions">
-                  <li>
-                    <button className="edit-btn-ico"></button>
-                  </li>
-                  <li>
-                    <button className="del-btn-ico"></button>
-                  </li>
-                </ul>
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <div className="category">
-                  <span className="cat-icon rent">
-                    <Image
-                      src="/images/budget/icon-3.png"
-                      alt="rent"
-                      width={20}
-                      height={20}
-                    />
-                  </span>
-                  Rent / Mortgage
-                </div>
-              </td>
-              <td>2023-10</td>
-              <td>$2,800.00</td>
-              <td>
-                <ul className="actions">
-                  <li>
-                    <button className="edit-btn-ico"></button>
-                  </li>
-                  <li>
-                    <button className="del-btn-ico"></button>
-                  </li>
-                </ul>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        {/* TABLE FOOTER */}
-        <div className="table-footer">
-          <span>Showing 1 to 3 of 3 entries</span>
-
-          <div className="pagination">
-            <button>Previous</button>
-            <button className="active">Next</button>
-          </div>
-        </div>
+                return (
+                  <tr key={item.id}>
+                    <td>{categoryName}</td>
+                    <td>{item.month.slice(0, 7)}</td>
+                    <td>₹ {item.amount}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );

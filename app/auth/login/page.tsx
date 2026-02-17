@@ -30,7 +30,7 @@ export default function Login() {
     const onSubmit = async (data: any) => {
         try {
             const res = await dispatch(authLogin({ email: data.email, password: data.password })).unwrap();
-            router.push("/features");
+            router.push("/dashboard");
         } catch (err) {
             console.error(err);
         }

@@ -1,157 +1,3 @@
-// import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-// import { AxiosInstance } from "../../api/axios/axios";
-// import { endPoints } from "../../api/endPoints/endPoints";
-// import { toast } from "sonner";
-// import { Cookies } from "react-cookie";
-
-// interface AuthState {
-//   userId: number | null;
-//   username: string | null;
-//   email: string | null;
-//   isAuthenticated: boolean;
-//   loading: boolean;
-//   error: string | null;
-// }
-
-// const initialState: AuthState = {
-//   userId: null,
-//   username: null,
-//   email: null,
-//   isAuthenticated: false,
-//   loading: false,
-//   error: null,
-// };
-
-// // const cookies = new Cookies();
-
-// /* Register */
-// export const authRegistration = createAsyncThunk(
-//   "auth/register",
-//   async (payload: any, { rejectWithValue }) => {
-//     try {
-//       const res = await AxiosInstance.post(endPoints.auth.signUp, {
-//         username: payload.email.split("@")[0], // REQUIRED by Django
-//         email: payload.email,
-//         password: payload.password,
-//         confirm_password: payload.confirm_password,
-//         full_name: payload.full_name,
-//       });
-
-//       return res.data;
-//     } catch (err: any) {
-
-//   return rejectWithValue(
-//     err.response?.data || { message: "Backend not reachable" }
-//   );
-
-//     }},
-//   );
-
-// /* Login */
-// export const authLogin = createAsyncThunk(
-//   "auth/login",
-//   async (
-//     payload: { username: string; password: string },
-//     { rejectWithValue },
-//   ) => {
-//     try {
-//       const response = await AxiosInstance.post(endPoints.auth.signIn, payload);
-//       return response.data;
-//     } catch (error: any) {
-//       return rejectWithValue("Login failed");
-//     }
-//   },
-// );
-
-// /* Verify OTP */
-// export const verifyOtp = createAsyncThunk(
-//   "auth/verifyOtp",
-//   async (payload: { email: string; otp: string }, { rejectWithValue }) => {
-//     try {
-//       const response = await AxiosInstance.post(
-//         "/api/account/verify-otp/",
-//         payload,
-//       );
-//       return response.data;
-//     } catch (error: any) {
-//       return rejectWithValue(error.response?.data);
-//     }
-//   },
-// );
-
-// const authSlice = createSlice({
-//   name: "authSlice",
-//   initialState,
-//   reducers: {
-//     logout: (state) => {
-//       state.userId = null;
-//       state.username = null;
-//       state.email = null;
-//       state.access = null;
-//       state.refresh = null;
-//       localStorage.clear();
-//     },
-//   },
-//   extraReducers: (builder) => {
-//     builder
-//       .addCase(authRegistration.pending, (state) => {
-//         state.loading = true;
-//       })
-//       .addCase(authRegistration.fulfilled, (state, { payload }) => {
-//         state.loading = false;
-//         toast.success(payload.message || "OTP sent");
-//       })
-//       .addCase(authRegistration.rejected, (state, { payload }: any) => {
-//         state.loading = false;
-//         toast.error(payload?.error || "Registration failed");
-//       })
-
-//       /* VERIFY OTP */
-//       .addCase(verifyOtp.pending, (state) => {
-//         state.loading = true;
-//       })
-//       .addCase(verifyOtp.fulfilled, (state, action) => {
-//         const user = action.payload?.user;
-
-//         if (user) {
-//           state.userId = user.id;
-//           state.username = user.username;
-//           state.email = user.email;
-//         }
-//       })
-
-//       .addCase(verifyOtp.rejected, (state, { payload }: any) => {
-//         state.loading = false;
-//         toast.error(payload?.error || "OTP verification failed");
-//       })
-
-//       /* LOGIN */
-//       .addCase(authLogin.pending, (state) => {
-//         state.loading = true;
-//       })
-
-//       .addCase(authLogin.fulfilled, (state, action) => {
-//         Cookies.set("access_token", action.payload.access, {
-//           sameSite: "lax",
-//         });
-
-//         Cookies.set("refresh_token", action.payload.refresh, {
-//           sameSite: "lax",
-//         });
-
-//         state.isAuthenticated = true;
-//       })
-
-//       .addCase(authLogin.rejected, (state, { payload }: any) => {
-//         state.loading = false;
-//         toast.error(payload?.error || "Login failed");
-//       });
-//   },
-// });
-
-// export const { logout } = authSlice.actions;
-// export default authSlice;
-
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import AxiosInstance from "../../api/axios/axios";
 import { endPoints } from "../../api/endPoints/endPoints";
@@ -167,6 +13,7 @@ interface AuthState {
   loading: boolean;
   error: string | null;
   user: any | null;
+  token: any;
 }
 
 const initialState: AuthState = {
@@ -177,6 +24,7 @@ const initialState: AuthState = {
   user: null,
   loading: false,
   error: null,
+  token: null,
 };
 
 const cookies = new Cookies();
@@ -251,6 +99,7 @@ const authSlice = createSlice({
     logout: (state) => {
       state.userId = null;
       state.username = null;
+      state.token = null;
       state.email = null;
       state.isAuthenticated = false;
       cookies.remove("access_token");
@@ -312,11 +161,40 @@ const authSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
+      // .addCase(authLogin.fulfilled, (state, action) => {
+      //   state.loading = false;
+      //   state.user = action.payload.user;
+      //   state.error = null;
+      // })
       .addCase(authLogin.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload.user;
+
+        const { access, refresh, user } = action.payload;
+
+        // ✅ Save tokens in cookies
+        cookies.set("access_token", access, {
+          path: "/",
+          secure: false, // true in production (https)
+          sameSite: "strict",
+        });
+
+        cookies.set("refresh_token", refresh, {
+          path: "/",
+          secure: false,
+          sameSite: "strict",
+        });
+
+        // ✅ Save user in state
+        state.user = user;
+        state.userId = user?.id;
+        state.username = user?.username;
+        state.email = user?.email;
+        state.isAuthenticated = true;
         state.error = null;
+
+        toast.success("Login successful");
       })
+
       .addCase(authLogin.rejected, (state, action: any) => {
         state.loading = false;
         // Use backend error message if exists

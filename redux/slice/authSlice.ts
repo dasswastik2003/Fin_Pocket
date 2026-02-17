@@ -145,7 +145,7 @@ const authSlice = createSlice({
         state.loading = false;
         if (payload.user) {
           state.userId = payload.user.id;
-          state.username = payload.user.username;
+         state.username = payload.user.username;
           state.email = payload.user.email;
           state.isAuthenticated = true;
         }

@@ -8,8 +8,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
-import { authRegistration } from '@/redux/slice/authSlice';
 import { toast } from 'sonner';
+import { authRegistration } from '@/redux/slice/authSlice';
 
 const schema = yup.object().shape({
     full_name: yup.string().required("Full Name is required"),

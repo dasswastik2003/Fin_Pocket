@@ -52,7 +52,7 @@ const HomeBanner = () => {
                 Get Started
               </Link>
 
-              <Link href="/signup" className="btn btn-secondary">
+              <Link href="/auth/register" className="btn btn-secondary">
                 Sign Up
               </Link>
             </div>
